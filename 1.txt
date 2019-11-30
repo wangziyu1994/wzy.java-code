@@ -2,8 +2,4 @@ fsfsfsafasf
 saffa
 sdfsf
 dfsf11111111111111
-<<<<<<< HEAD
-mater newline
-=======
-wzybranch1 newline
->>>>>>> wzy.branch1
+wzy.branch1 newline
