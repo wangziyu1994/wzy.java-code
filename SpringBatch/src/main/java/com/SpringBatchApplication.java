@@ -16,7 +16,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.wang.model.CreditBill;
+import com.model.CreditBill;
 @SpringBootApplication
 @EnableBatchProcessing
 public class SpringBatchApplication {

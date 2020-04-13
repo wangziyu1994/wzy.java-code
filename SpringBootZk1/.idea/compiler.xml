@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SpringBoot-Zk2" />
+        <module name="SpringBootTest2" />
+        <module name="SpringBootTest1" />
+        <module name="SpringCloudDiscovery" />
+        <module name="SpringBatch" />
+        <module name="SpringBootZk1" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpringBoot-Zk2" options="-parameters" />
+      <module name="SpringBootZk1" options="-parameters" />
+    </option>
+  </component>
+</project>

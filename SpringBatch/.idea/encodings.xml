@@ -2,5 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../SpringBoot-Zk1" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../SpringBoot-Zk2" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../SpringBootLearning/springboot-apollo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../SpringBootZk1" charset="UTF-8" />
+    <file url="file://E:/java-workspace/SpringBootTest" charset="UTF-8" />
+    <file url="file://E:/java-workspace/SpringBootTest1" charset="UTF-8" />
+    <file url="file://E:/java-workspace/SpringBootTest2" charset="UTF-8" />
+    <file url="file://E:/java-workspace/SpringCloudDiscovery" charset="UTF-8" />
   </component>
 </project>
