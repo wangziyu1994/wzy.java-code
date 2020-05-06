@@ -27,4 +27,23 @@ public class Test1 {
     }
 }
 
+    @Test
+    public void send1() throws InterruptedException {
+        producer.sendMsg1();
+        producer.sendMsg2();
+    }
+
+
+    @Test
+    public void send2() throws InterruptedException {
+        producer.sendMsg3();
+        producer.sendMsg4();
+        producer.sendMsg5();
+    }
+
+    @Test
+    public void send3() throws InterruptedException {
+        producer.sendMsg6();
+    }
+
 }

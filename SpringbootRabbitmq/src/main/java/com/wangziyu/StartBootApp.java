@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StartBootApp {
 
     public static void main(String args[]) {
-Model1 model1=new Model1();
-model1.setuName("wangziyu");
-model1.setSex("男");
-       SpringApplication.run(StartBootApp.class, args);
+        Model1 model1 = new Model1();
+        model1.setuName("wangziyu");
+        model1.setSex("男");
+        SpringApplication.run(StartBootApp.class, args);
 
     }
 
