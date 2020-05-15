@@ -19,7 +19,18 @@
         <groupId>org.springframework.cloud</groupId> 
         <artifactId>spring-cloud-starter-eureka-server</artifactId>     
         </dependency>
-        </dependencies>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <scope>test</scope>
+      </dependency>
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>druid</artifactId>
+          <version>1.1.10</version>
+          <scope>test</scope>
+      </dependency>
+  </dependencies>
         
 
 

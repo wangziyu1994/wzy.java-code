@@ -13,8 +13,10 @@
   </parent>
   
   <modules>
-  <module>../SpringBootTest1</module>
-  <module>../SpringBootTest2</module>
+  <module>../SpringBootProvider1</module>
+  <module>../SpringBootProvider2</module>
+    <module>../SpringBootProvider3</module>
+    <module>../SpringBootConsumer1</module>
   <module>../SpringCloudDiscovery</module>
   </modules>
 

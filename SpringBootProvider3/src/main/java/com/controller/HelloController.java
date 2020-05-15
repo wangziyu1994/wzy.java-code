@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,9 @@ public class HelloController implements HelloInter{
 	private static Logger logger=LoggerFactory.getLogger("HelloController.class");
 	@Autowired
 	private  HelloDao hd;
+
+	@Value("${server.port}")
+	private String port;
 	
 	@RequestMapping(value="/sayhello")
 	  
@@ -32,8 +36,8 @@ public class HelloController implements HelloInter{
 		 * logger.debug("debug日志记录开始"); logger.info("info日志记录开始");
 		 * logger.warn("warn日志记录开始"); logger.error("error日志记录开始"); i++; }
 		 */
-		List<HelloUser>  lh=hd.selectHello();
-		return lh.get(0).getUserName()+"   "+lh.get(1).getUserName(); 
+		//List<HelloUser>  lh=hd.selectHello();
+		return "springbootProvider3:"+port;
 		}
 	
 	@RequestMapping(value="/sayhello1")
