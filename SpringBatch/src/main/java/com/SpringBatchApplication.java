@@ -16,7 +16,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.model.CreditBill;
+import com.wang.model.CreditBill;
 @SpringBootApplication
 @EnableBatchProcessing
 public class SpringBatchApplication {
@@ -24,13 +24,13 @@ public class SpringBatchApplication {
 	
 	public static void main(String args[]) throws BeansException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 	ConfigurableApplicationContext ctx=SpringApplication.run(SpringBatchApplication.class,args);
-	CreditBill c=ctx.getBean(CreditBill.class);	
-	System.out.println("路径是:"+CreditBill.path);
-	 JobLauncher jobLauncher = ctx.getBean(JobLauncher.class);	
-	 JobParameters jobParameters = new JobParametersBuilder()
-            .addDate("date", new Date()) 
-             .addString("fileNames", "jobparams1")
-             .toJobParameters();
-     jobLauncher.run(ctx.getBean("myjob1", Job.class), jobParameters);
+	CreditBill c=ctx.getBean(CreditBill.class);
+		System.out.println("路径是:"+CreditBill.path);
+		JobLauncher jobLauncher = ctx.getBean(JobLauncher.class);
+		JobParameters jobParameters = new JobParametersBuilder()
+				.addDate("date", new Date())
+				.addString("fileNames", "jobparams1")
+				.toJobParameters();
+		jobLauncher.run(ctx.getBean("myjob1", Job.class), jobParameters);
 	}
 }

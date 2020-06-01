@@ -4,15 +4,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="E:/java-workspace/SpringBootTest2/pom.xml" />
-        <option value="E:/java-workspace/SpringBootTest1/pom.xml" />
-        <option value="E:/java-workspace/SpringCloudDiscovery/pom.xml" />
-        <option value="E:/java-workspace/SpringBootTest/pom.xml" />
-        <option value="$PROJECT_DIR$/../SpringBootLearning/springboot-apollo/pom.xml" />
-        <option value="$PROJECT_DIR$/../SpringbootZookeeper/pom.xml" />
-        <option value="$PROJECT_DIR$/../SpringBootZk2/pom.xml" />
-        <option value="$PROJECT_DIR$/../SpringBoot-Zk2/pom.xml" />
-        <option value="$PROJECT_DIR$/../SpringBootZk1/pom.xml" />
       </list>
     </option>
   </component>

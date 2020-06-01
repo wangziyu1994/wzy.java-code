@@ -3,13 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SpringBatch.iml" filepath="$PROJECT_DIR$/SpringBatch.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../SpringBootZk1/SpringBoot-Zk1.iml" filepath="$PROJECT_DIR$/../SpringBootZk1/SpringBoot-Zk1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../SpringBoot-Zk2/SpringBoot-Zk2.iml" filepath="$PROJECT_DIR$/../SpringBoot-Zk2/SpringBoot-Zk2.iml" />
-      <module fileurl="file://E:/java-workspace/SpringBootTest/SpringBootTest.iml" filepath="E:/java-workspace/SpringBootTest/SpringBootTest.iml" />
-      <module fileurl="file://E:/java-workspace/SpringBootTest1/SpringBootTest1.iml" filepath="E:/java-workspace/SpringBootTest1/SpringBootTest1.iml" />
-      <module fileurl="file://E:/java-workspace/SpringBootTest2/SpringBootTest2.iml" filepath="E:/java-workspace/SpringBootTest2/SpringBootTest2.iml" />
-      <module fileurl="file://E:/java-workspace/SpringCloudDiscovery/SpringCloudDiscovery.iml" filepath="E:/java-workspace/SpringCloudDiscovery/SpringCloudDiscovery.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../SpringBootLearning/springboot-apollo/springboot-apollo.iml" filepath="$PROJECT_DIR$/../SpringBootLearning/springboot-apollo/springboot-apollo.iml" />
     </modules>
   </component>
 </project>

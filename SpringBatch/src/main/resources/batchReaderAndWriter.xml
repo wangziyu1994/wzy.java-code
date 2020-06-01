@@ -98,10 +98,10 @@
     </bean:bean>
     
     <bean:bean id="creditBill" scope="prototype"
-        class="com.model.CreditBill">
+        class="com.wang.model.CreditBill">
     </bean:bean>
     <bean:bean id="creditBillProcessor" scope="step"
-        class="com.processor.CreditBillProcessor">
+        class="com.wang.processor.CreditBillProcessor">
     </bean:bean>
     
     </bean:beans>
