@@ -7,7 +7,7 @@
      <relativePath>../SpringBootTest/pom.xml/</relativePath>
   </parent>
   <groupId>com.wang</groupId>
-  <artifactId>SpringCloudDiscovery</artifactId>
+  <artifactId>SpringCloudDiscovery3</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
   <!-- 导入spring-boot的web支持 -->

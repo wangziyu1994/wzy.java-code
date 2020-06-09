@@ -13,11 +13,15 @@
   </parent>
   
   <modules>
+    <module>../SpringBootZuulGateWay</module>
   <module>../SpringBootProvider1</module>
   <module>../SpringBootProvider2</module>
     <module>../SpringBootProvider3</module>
     <module>../SpringBootConsumer1</module>
-  <module>../SpringCloudDiscovery</module>
+  <module>../SpringCloudDiscovery1</module>
+    <module>../SpringCloudDiscovery2</module>
+    <module>../SpringCloudDiscovery3</module>
+    <module>../SpringCloudInterface</module>
   </modules>
 
   <dependencyManagement>

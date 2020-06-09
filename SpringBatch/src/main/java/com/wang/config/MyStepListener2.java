@@ -34,7 +34,7 @@ public class MyStepListener2 implements StepExecutionListener{
 		System.out.println("jobParameter是："+jobparam1);
 		System.out.println("job执行参数"+this.fileName);
 		System.out.println("step2完成了");
-		return null;
+		return ExitStatus.COMPLETED;
 	}
 
 }
