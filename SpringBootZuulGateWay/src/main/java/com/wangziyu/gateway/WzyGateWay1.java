@@ -54,7 +54,9 @@ public class WzyGateWay1 extends ZuulFilter {
         HttpServletRequest request = requestContext.getRequest();//获取请求对象
 System.out.println("请求形式是："+request.getMethod()+"请求url:"+request.getRequestURL().toString());
         String isGateWayFlag=request.getParameter("gateway1");
+        String parameter1=request.getParameter("parameter1");
         System.out.println(isGateWayFlag);
+        System.out.println(parameter1);
         if(isGateWayFlag!=null&&isGateWayFlag.equals("true")){//对请求进行路由
             requestContext.setSendZuulResponse(true);//对请求进行路由
             requestContext.setResponseStatusCode(200);
