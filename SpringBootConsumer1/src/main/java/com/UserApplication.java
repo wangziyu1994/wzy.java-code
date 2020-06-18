@@ -7,11 +7,11 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 
-@EnableFeignClients
+@EnableFeignClients//开启 feignclient 微服务内部调用
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableDiscoveryClient//开启服务注册发现
 @EnableHystrix//开启断路器功能
-@EnableHystrixDashboard//开启断路器监控
+@EnableHystrixDashboard//开启断路器监控\
 public class UserApplication {
 
 	

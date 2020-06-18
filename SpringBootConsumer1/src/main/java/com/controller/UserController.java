@@ -33,6 +33,9 @@ public class UserController {
 
 	private String wzy;
 
+	@Value("${wangziyu.name}")
+	private String wangziyu;
+
 /**
  * 测试eurka 微服务之间的调用
  */
@@ -55,7 +58,10 @@ public class UserController {
 		System.out.println("负载均衡调用结束!返回"+a);
 	}
 
-
+	/**
+	 * 测试ribbon feign负载均衡
+	 * @param uName
+	 */
 	@RequestMapping(value="/loadbanlanceFeign",method = RequestMethod.POST)
 	public String loadbanlance2() {
 		System.out.println("Foreign负载均衡调用开始!");
@@ -72,5 +78,15 @@ public class UserController {
 	public String myFallBackMethod(){
 		System.out.println("调用外系统服务失败，开始执行断路器回调方法");
 		return  "断路器回调方法";
+	}
+
+	/**
+	 * 测试 从springconfig获取  配置文件
+	 * @return
+	 */
+	@RequestMapping(value="/testspringcloudconfig",method = RequestMethod.GET)
+	public String testSpringConfig(){
+System.out.println("从springcloudconfig获取的值为"+wangziyu);
+		return wangziyu;
 	}
 }
