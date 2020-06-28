@@ -28,6 +28,12 @@
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
 
+        <!--spring cloud busyi依赖包-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
