@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.wang</groupId>
+  <artifactId>SpringBootRedis</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>com.wang</groupId>
+    <artifactId>SpringBootTest</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../SpringBootTest/pom.xml/</relativePath>
+  </parent>
+
+
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+  <!-- <dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+    <version>2.1.0</version>
+</dependency>-->
+
+    <!-- 导入spring-boot的web支持 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+      <!-- 导入spring-boot,redis整合包 -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-data-redis</artifactId>
+          <!-- 排除lettuce包，使用jedis代替-->
+        <!--  <exclusions>
+              <exclusion>
+                  <groupId>io.lettuce</groupId>
+                  <artifactId>lettuce-core</artifactId>
+              </exclusion>
+          </exclusions>-->
+      </dependency>
+
+
+    
+    
+  </dependencies>
+</project>

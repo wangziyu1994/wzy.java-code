@@ -22,6 +22,7 @@
     <module>../SpringCloudDiscovery2</module>
     <module>../SpringCloudDiscovery3</module>
     <module>../SpringCloudInterface</module>
+    <module>../SpringBootRedis</module>
   </modules>
 
   <dependencyManagement>
