@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//www.w3cschool.cn/statics/assets/react/react.min.js"></script>
+    <script src="//www.w3cschool.cn/statics/assets/react/react-dom.min.js"></script>
+    <script src="//www.w3cschool.cn/statics/assets/react/babel.min.js"></script>
+</head>
+<body>
+<div id="example">
+</div>
+</body>
+<script type="text/babel">
+
+//JSX 看起来类似 HTML ，我们可以看下实例：
+    ReactDOM.render(
+    <h1>Hello,World!</h1>,
+        document.getElementById('example')
+    );
+
+
+
+//元素添加了自定义属性 data-myattribute，添加自定义属性需要使用 data- 前缀。
+    ReactDOM.render(
+    <div>
+    <h1>W3Cschool教程</h1>
+    <h2>欢迎学习 React</h2>
+    <p data-myattribute = "somevalue">这是一个很不错的 JavaScript 库!</p>
+    </div>,
+        document.getElementById('example')
+    );
+
+//我们可以在 JSX 中使用 JavaScript 表达式。表达式写在花括号 {} 中。实例如下：
+/**
+ * 在 JSX 中不能使用 if else 语句，单可以使用 conditional (三元运算) 表达式来替代。以下实例中如果变量 i 等于 1 浏览器将输出 true, 如果修改 i 的值，则会输出 false.
+ * @type {{color: string, fontSize: number}}
+ */
+
+    var myStyle={
+        fontSize:100,
+        color:"#FF0000"
+    };
+    ReactDOM.render(
+        <h1 style = {myStyle}>W3Cschool教程</h1>,
+            document.getElementById('example')
+    );
+
+    var HelloMessage=React.createClass({
+        render: function(){
+            return <h1>Hello,World</h1>
+        }
+    });
+
+    ReactDOM.render(
+        <HelloMessage/>,
+        document.getElementById('example')
+    );
+
+    var HelloMessage1=React.createClass({
+        render: function(){
+            return <h1>Hello,{this.props.name}</h1>
+        }
+    });
+
+    ReactDOM.render(
+        <HelloMessage1 name="wangziyu"/>,
+        document.getElementById('example')
+    );
+
+
+
+
+</script>
+</html>

@@ -51,7 +51,7 @@ public class HelloController implements HelloInter{
 		 * logger.warn("warn日志记录开始"); logger.error("error日志记录开始"); i++; }
 		 */
 		List<HelloUser>  lh=hd.selectHello1();
-		return lh.get(0).getUserName()+"   "+lh.get(1).getUserName(); 
+		return lh.get(0).getName()+"   "+lh.get(1).getName();
 		}
 	@RequestMapping(value="/wzyaisaber")
 

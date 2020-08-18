@@ -1,10 +1,13 @@
 package com.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class HelloUser implements Serializable{
 private Integer sId;
+@JSONField(name="userName")
 private String userName;
 private Date startDate;
 public Integer getsId() {

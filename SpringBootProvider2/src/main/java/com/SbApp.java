@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 //@Controller
@@ -13,7 +16,6 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableEurekaClient
 //@SpringBootConfiguration    //自动配置注解代替 configuration
-//@ComponentScan
 //@Configuration
 public class SbApp {
 	
