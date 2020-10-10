@@ -28,7 +28,7 @@ public class SpringBatchApplication {
 		System.out.println("路径是:"+CreditBill.path);
 		JobLauncher jobLauncher = ctx.getBean(JobLauncher.class);
 		JobParameters jobParameters = new JobParametersBuilder()
-				.addDate("date", new Date())
+				//.addDate("date", new Date())
 				.addString("fileNames", "jobparams1")
 				.toJobParameters();
 		jobLauncher.run(ctx.getBean("myjob1", Job.class), jobParameters);

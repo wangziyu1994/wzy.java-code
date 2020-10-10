@@ -2,6 +2,7 @@ package com.controller;
 
 import java.util.List;
 
+import com.service.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,48 +19,55 @@ import com.model.HelloUser;
 
 @RestController
 
-public class HelloController implements HelloInter{
-	private static Logger logger=LoggerFactory.getLogger("HelloController.class");
-	@Autowired
-	private  HelloDao hd;
+public class HelloController implements HelloInter {
+    private static Logger logger = LoggerFactory.getLogger("HelloController.class");
+    @Autowired
+    private HelloDao hd;
 
-	@Value("${server.port}")
-	private String port;
-	
-	@RequestMapping(value="/sayhello")
-	  
- public String sayHello(String uName) { 
-		
-		/*
-		 * try { int i=9/0; } catch(ArithmeticException ae) { logger.error("日志记录算术异常");
-		 * } int i=0; while(i<200) { logger.trace("trace日志记录开始");
-		 * logger.debug("debug日志记录开始"); logger.info("info日志记录开始");
-		 * logger.warn("warn日志记录开始"); logger.error("error日志记录开始"); i++; }
-		 */
-		//List<HelloUser>  lh=hd.selectHello();
-		return "springbootProvider2:"+port;
-		}
-	
-	@RequestMapping(value="/sayhello1")
-	  
- public String sayHello1(String uName) { 
-		
-		/*
-		 * try { int i=9/0; } catch(ArithmeticException ae) { logger.error("日志记录算术异常");
-		 * } int i=0; while(i<200) { logger.trace("trace日志记录开始");
-		 * logger.debug("debug日志记录开始"); logger.info("info日志记录开始");
-		 * logger.warn("warn日志记录开始"); logger.error("error日志记录开始"); i++; }
-		 */
-		List<HelloUser>  lh=hd.selectHello1();
-		return lh.get(0).getName()+"   "+lh.get(1).getName();
-		}
-	@RequestMapping(value="/wzyaisaber")
+    @Autowired
+    private HelloService helloService;
 
-	public String wzyaisaber( ) {
+    @Value("${server.port}")
+    private String port;
 
-	System.out.println("===============登录成功================");
+    @RequestMapping(value = "/sayhello")
 
-		return "登录成功!!";
-	}
-	 
+    public String sayHello(String uName) {
+
+        /*
+         * try { int i=9/0; } catch(ArithmeticException ae) { logger.error("日志记录算术异常");
+         * } int i=0; while(i<200) { logger.trace("trace日志记录开始");
+         * logger.debug("debug日志记录开始"); logger.info("info日志记录开始");
+         * logger.warn("warn日志记录开始"); logger.error("error日志记录开始"); i++; }
+         */
+        //List<HelloUser>  lh=hd.selectHello();
+        return "springbootProvider2:" + port;
+    }
+
+    @RequestMapping(value = "/sayhello1")
+
+    public String sayHello1(String uName) {
+
+        /*
+         * try { int i=9/0; } catch(ArithmeticException ae) { logger.error("日志记录算术异常");
+         * } int i=0; while(i<200) { logger.trace("trace日志记录开始");
+         * logger.debug("debug日志记录开始"); logger.info("info日志记录开始");
+         * logger.warn("warn日志记录开始"); logger.error("error日志记录开始"); i++; }
+         */
+        List<HelloUser> lh = hd.selectHello1();
+        return lh.get(0).getName() + "   " + lh.get(1).getName();
+    }
+
+
+    @RequestMapping(value = "/wzyaisaber")
+
+    public String wzyaisaber() {
+
+        logger.info("===============登录成功================");
+        logger.debug("debug-controller方法登入");
+        helloService.doHelloService();
+        logger.info("===============退出成功================");
+        return "登录成功!!";
+    }
+
 }
