@@ -73,4 +73,17 @@ public class Test3 {
             System.out.println(f.get(s)+""+f.get(s).getClass()+" "+f.getType().isPrimitive()+" ");
         }
     }
+
+
+
+    @Test
+    public void test6() throws IllegalAccessException {
+
+    Parent a=new Parent();
+    a.setName("aaa");
+    Parent b=new Parent();
+    b=a;
+    b.setName("bbbb");
+    System.out.println(a.getName());
+    }
 }
