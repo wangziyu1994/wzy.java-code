@@ -1,0 +1,22 @@
+{
+  "name": "wzynodejspackages",
+  "version": "1.0.0",
+  "description": "wangziyu test add on 20201027",
+  "main": "WzyStringJs.js",
+  "scripts": {
+    "test": "node WzyStringJs.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangziyu1994/wzy.java-code.git"
+  },
+  "keywords": [
+    "WzyStringJs.js"
+  ],
+  "author": "wangziyu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangziyu1994/wzy.java-code/issues"
+  },
+  "homepage": "https://github.com/wangziyu1994/wzy.java-code#readme"
+}
