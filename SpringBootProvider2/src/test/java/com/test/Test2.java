@@ -18,6 +18,8 @@ import java.io.StringWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -56,7 +58,18 @@ public class Test2 {
         System.out.println("翻转XML为对象："+_XMLTest.getClassName());
     }
 
-
+    @Test
+    public void test3(){
+        ExecutorService executorService= Executors.newSingleThreadExecutor();
+        for(int i=0;i<=10;i++){
+            executorService.submit(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(Thread.currentThread().getName());
+                }
+            });
+        }
+    }
 
 
 

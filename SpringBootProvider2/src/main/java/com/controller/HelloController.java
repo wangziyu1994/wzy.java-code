@@ -48,14 +48,15 @@ public class HelloController implements HelloInter {
 
     public String sayHello1(String uName) {
 
+        logger.info(uName);
         /*
          * try { int i=9/0; } catch(ArithmeticException ae) { logger.error("日志记录算术异常");
          * } int i=0; while(i<200) { logger.trace("trace日志记录开始");
          * logger.debug("debug日志记录开始"); logger.info("info日志记录开始");
          * logger.warn("warn日志记录开始"); logger.error("error日志记录开始"); i++; }
          */
-        List<HelloUser> lh = hd.selectHello1();
-        return lh.get(0).getName() + "   " + lh.get(1).getName();
+       // List<HelloUser> lh = hd.selectHello1();
+        return uName;
     }
 
 
