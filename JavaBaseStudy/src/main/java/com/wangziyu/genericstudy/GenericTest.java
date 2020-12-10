@@ -1,5 +1,6 @@
 package com.wangziyu.genericstudy;
 
+
 import org.junit.jupiter.api.Test;
 
 public class GenericTest {
@@ -16,5 +17,18 @@ public class GenericTest {
         Integer b=MyGenericMethod.get(ints);
         System.out.println(a);
         System.out.println(b);
+    }
+
+
+    @Test
+    public void test2(){
+        int a=0;
+        int c=0;
+        int b=a--;
+        int d=--c;
+        System.out.println(a);//-1
+        System.out.println(b);//0
+        System.out.println(c);//-1
+        System.out.println(d);//-1
     }
 }
