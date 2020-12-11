@@ -30,4 +30,13 @@ public class MyTest {
         System.out.println(obj.toString());
 
     }
+
+
+
+    @Test
+    public void test2() throws Exception{
+       String str="は";
+       System.out.println("GBK  "+str.getBytes("GBK").length);
+        System.out.println("UTF-8  "+str.getBytes("UTF-8").length);
+    }
 }
