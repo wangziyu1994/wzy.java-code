@@ -1,5 +1,6 @@
 package com.mulpthread;
 
+import com.mulpthread.Model.Bank;
 import org.junit.jupiter.api.Test;
 
 public class ThreadTest {
@@ -47,6 +48,29 @@ public class ThreadTest {
         myThread1.start();
         myThread2.start();
         myThread3.start();
+
+
+    }
+
+    @Test
+    public void test4()  {
+        int accountSum=100;
+        double sumBal=1000;
+        double max_amount=1000;
+        int delay=10;
+       Bank bank=new Bank(100,1000);
+       for(int i=0;i<100;i++){
+          int from=i;
+          Runnable runnable=()->{
+              try{
+                    while (true){
+                        int toAccount=bank.getSize()*Math.random();
+                        double amount=max_amount*Math.random();
+
+                    }
+              }
+          }
+       }
 
 
     }
