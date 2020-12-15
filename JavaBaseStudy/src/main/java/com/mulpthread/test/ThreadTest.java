@@ -1,25 +1,15 @@
-package com.mulpthread;
+package com.mulpthread.test;
 
-import com.mulpthread.Model.Bank;
+import com.mulpthread.model.MyThread1;
+import com.mulpthread.model.Bank;
 import org.junit.jupiter.api.Test;
 
 public class ThreadTest {
     public static volatile int num=30;
     @Test
     public void test1(){
-
-        Thread myThread1=new Thread(new MyThread1());
-        Thread myThread2=new Thread(new MyThread1());
-        Thread myThread3=new Thread(new MyThread1());
-        Thread myThread4=new Thread(new MyThread1());
-        Thread myThread5=new Thread(new MyThread1());
-        Thread myThread6=new Thread(new MyThread1());
-        myThread1.start();
-        myThread2.start();
-        myThread3.start();
-        myThread4.start();
-        myThread5.start();
-        myThread6.start();
+        double d=100;
+        System.out.printf("%10.2f from %d to %d",d,10,20);
     }
 
 
@@ -54,22 +44,33 @@ public class ThreadTest {
 
     @Test
     public void test4()  {
-        int accountSum=100;
-        double sumBal=1000;
-        double max_amount=1000;
-        int delay=10;
-       Bank bank=new Bank(100,1000);
-       for(int i=0;i<100;i++){
-          int from=i;
+      final int NACCOUNTS=100;
+      final double INITIAL_BALANCE=1000;
+      final double MAX_AMOUNT=1000;
+      final int  DELAY=10;
+       Bank bank=new Bank(NACCOUNTS,INITIAL_BALANCE);
+       for(int i=0;i<NACCOUNTS;i++){
+          final int fromAccount=i;
           Runnable runnable=()->{
               try{
                     while (true){
-                        int toAccount=bank.getSize()*Math.random();
-                        double amount=max_amount*Math.random();
-
+                        int toAccount=(int)(bank.getSize()*Math.random());
+                        double amount=MAX_AMOUNT*Math.random();
+                        //无锁的非同步转账
+                        //bank.transFer(fromAccount,toAccount,amount);
+                        //有锁的同步转账
+                        bank.reentrantLockTransFer(fromAccount,toAccount,amount);
+                        Thread.sleep((int)(DELAY*Math.random()));
                     }
               }
-          }
+              catch (InterruptedException e){
+
+              }
+          };
+          Thread t=new Thread(runnable);
+          t.start();
+
+
        }
 
 
