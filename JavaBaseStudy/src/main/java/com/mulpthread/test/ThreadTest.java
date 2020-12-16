@@ -44,7 +44,7 @@ public class ThreadTest {
 
     @Test
     public void test4()  {
-      final int NACCOUNTS=100;
+      final int NACCOUNTS=10;
       final double INITIAL_BALANCE=1000;
       final double MAX_AMOUNT=1000;
       final int  DELAY=10;
@@ -55,11 +55,14 @@ public class ThreadTest {
               try{
                     while (true){
                         int toAccount=(int)(bank.getSize()*Math.random());
-                        double amount=MAX_AMOUNT*Math.random();
+                        //double amount=MAX_AMOUNT*Math.random();
+                        double amount=20;
                         //无锁的非同步转账
                         //bank.transFer(fromAccount,toAccount,amount);
                         //有锁的同步转账
-                        bank.reentrantLockTransFer(fromAccount,toAccount,amount);
+                       // bank.reentrantLockTransFer(fromAccount,toAccount,amount);
+                        //有锁带有条件对象的转账
+                        bank.conditionalTransFer(fromAccount,toAccount,amount);
                         Thread.sleep((int)(DELAY*Math.random()));
                     }
               }
@@ -72,6 +75,42 @@ public class ThreadTest {
 
 
        }
+
+
+    }
+
+
+    @Test
+    public void test5()  {
+        final int NACCOUNTS=10;
+        final double INITIAL_BALANCE=1000;
+        final double MAX_AMOUNT=1000;
+        final int  DELAY=10;
+        Bank bank=new Bank(NACCOUNTS,INITIAL_BALANCE);
+        for(int i=0;i<NACCOUNTS;i++){
+             int fromAccount=i;
+            int toAccount=(int)(bank.getSize()*Math.random());
+            //double amount=MAX_AMOUNT*Math.random();
+            double amount=20;
+            Runnable runnable=new Runnable(){
+                @Override
+                public void run() {
+                    bank.syschronizedTransFer(fromAccount, toAccount, amount);
+                }
+            };
+            Thread t=new Thread(runnable);
+            t.start();
+
+            if(i==5){
+                Runnable runnable1=()->{
+                    System.out.println("线程"+Thread.currentThread().getName()+"开始修改共享变量");
+                    bank.accountsList.set(5,50.0);
+                };
+                Thread t1=new Thread(runnable1);
+                t1.start();
+            }
+
+        }
 
 
     }
