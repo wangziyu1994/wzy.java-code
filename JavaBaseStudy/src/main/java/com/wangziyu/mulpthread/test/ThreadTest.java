@@ -1,7 +1,7 @@
-package com.mulpthread.test;
+package com.wangziyu.mulpthread.test;
 
-import com.mulpthread.model.MyThread1;
-import com.mulpthread.model.Bank;
+import com.wangziyu.mulpthread.model.MyThread1;
+import com.wangziyu.mulpthread.model.Bank;
 import org.junit.jupiter.api.Test;
 
 public class ThreadTest {

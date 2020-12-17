@@ -1,4 +1,4 @@
-package com.mulpthread.model;
+package com.wangziyu.mulpthread.model;
 
 public class MyThread1 implements Runnable{
 

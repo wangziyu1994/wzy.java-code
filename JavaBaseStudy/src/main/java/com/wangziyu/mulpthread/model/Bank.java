@@ -1,4 +1,4 @@
-package com.mulpthread.model;
+package com.wangziyu.mulpthread.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
