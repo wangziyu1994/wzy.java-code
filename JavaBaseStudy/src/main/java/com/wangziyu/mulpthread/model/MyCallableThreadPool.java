@@ -5,18 +5,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
-public class MyCallable implements Callable<Integer> {
+public class MyCallableThreadPool implements Callable<Integer> {
     private File directory;
     private String keyword;
+    private ExecutorService pool;
 
-    public MyCallable(File directory, String keyword) {
+    public MyCallableThreadPool(File directory, String keyword,ExecutorService pool) {
         this.directory = directory;
         this.keyword = keyword;
+        this.pool=pool;
     }
 
     @Override
@@ -27,12 +26,9 @@ public class MyCallable implements Callable<Integer> {
             List<Future<Integer>> results = new ArrayList<>();
             for (File file : files) {
                 if (file.isDirectory()) {
-                    MyCallable myCallable = new MyCallable(file, keyword);
-                    FutureTask<Integer> task = new FutureTask<>(myCallable);
-                    results.add(task);
-                    Thread t = new Thread(task);
-                    t.start();
-
+                    MyCallableThreadPool myCallableThreadPool = new MyCallableThreadPool(file, keyword,pool);
+                    Future<Integer> result=pool.submit(myCallableThreadPool);
+                    results.add(result);
                 } else {
                     if(search(file))count++;
                 }
