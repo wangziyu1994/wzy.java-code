@@ -1,5 +1,7 @@
 package com.wangziyu.proxystudy;
 
+import com.wangziyu.proxystudy.abstractmodel.AInterface;
+import com.wangziyu.proxystudy.abstractmodel.BInterface;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationHandler;
@@ -19,7 +21,7 @@ public class MyTest {
             }
         };
         //需要代理类的Class对象数组
-        Class[] proxyClassArray={AInterface.class,BInterface.class};
+        Class[] proxyClassArray={AInterface.class, BInterface.class};
         Object obj= Proxy.newProxyInstance(classLoader,proxyClassArray,invocationHandler);
         AInterface a=(AInterface)obj;
         BInterface b=(BInterface)obj;
