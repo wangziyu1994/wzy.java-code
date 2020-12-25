@@ -1,4 +1,4 @@
-package com.wangziyu.proxystudy;
+package com.wangziyu.proxystudy.test;
 
 import com.wangziyu.proxystudy.abstractmodel.AInterface;
 import com.wangziyu.proxystudy.abstractmodel.BInterface;
