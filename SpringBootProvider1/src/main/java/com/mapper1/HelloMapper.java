@@ -2,10 +2,7 @@ package com.mapper1;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import com.model.HelloUser;
 
@@ -20,4 +17,8 @@ public interface HelloMapper {
 			@Result(column="start_date",property="startDate")
 	})
 	public List<HelloUser> selectHello();
+
+
+	@Insert(value="Insert into students (s_id,s_name,start_date) values(#{sId},#{userName},#{startDate}) ")
+	public int insertHello(HelloUser helloUser);
 }

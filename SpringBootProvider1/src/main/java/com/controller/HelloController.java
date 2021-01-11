@@ -1,8 +1,10 @@
 package com.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import com.dao.HelloDaoImpl;
+import com.mapper1.HelloMapper;
 import com.model.Student;
 import com.model.Subject;
 import io.swagger.annotations.Api;
@@ -37,6 +39,9 @@ public class HelloController implements HelloInter{
 
 	@Autowired
 	HelloDaoImpl helloDao;
+
+	@Autowired
+	private HelloMapper helloMapper;
 	
 	@RequestMapping(value="/sayhello",method = RequestMethod.POST,consumes = "application/xml;charset=UTF-8",produces = "application/xml;charset=UTF-8")
 	  @ApiOperation(value="sayhello")
@@ -80,8 +85,19 @@ public class HelloController implements HelloInter{
 	public String test( ) {
 
 	System.out.println("===============登录成功================");
+    HelloUser helloUser=new HelloUser();
+    helloUser.setsId(1);
+		helloUser.setUserName("sdfsdfd");
+		helloUser.setStartDate(new Date());
+        int a=-1;
+		try {
+          a=helloMapper.insertHello(helloUser);
+        }catch (Exception e){
+		    logger.error("dberror");
+        }
 
-		List<HelloUser> lists=helloDao.selectHello();
+	logger.info("a"+a);
+	/*	List<HelloUser> lists=helloDao.selectHello();
 
 		for(HelloUser h:lists){
 			logger.info("当前时间点是"+System.currentTimeMillis());
@@ -91,7 +107,7 @@ public class HelloController implements HelloInter{
 				h.getStartDate();
 			}
 
-		}
+		}*/
 
 		return "登录成功!!";
 	}
