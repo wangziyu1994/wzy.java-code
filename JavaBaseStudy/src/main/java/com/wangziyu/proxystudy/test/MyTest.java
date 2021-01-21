@@ -17,7 +17,14 @@ public class MyTest {
         InvocationHandler invocationHandler=new InvocationHandler() {
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("进入代理对象的实现方法");
-                return null;
+                String str="";
+                if(args!=null&&args.length>0){
+                    for(int i=0;i<=args.length-1;i++) {
+                        System.out.println("第"+i+"个参数:"+args[i]);
+                        str=(String)args[i];
+                    }
+                }
+                return str;
             }
         };
         //需要代理类的Class对象数组
@@ -26,10 +33,13 @@ public class MyTest {
         AInterface a=(AInterface)obj;
         BInterface b=(BInterface)obj;
 
-        a.function1("AInterface");
-        b.function2("BInterface");
+        String resultA=a.function1("AInterface");
+        String resultB=b.function2("BInterface");
         System.out.println(a.getClass());
-        System.out.println(obj.toString());
+        System.out.println(b.getClass());
+        System.out.println(obj.getClass());
+        System.out.println(resultA);
+        System.out.println(resultB);
 
     }
 

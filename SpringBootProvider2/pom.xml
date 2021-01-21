@@ -12,7 +12,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 <parent>
    <groupId>com.wang</groupId>
    <artifactId>SpringBootTest</artifactId>
-   <version>0.0.1-SNAPSHOT</version>
+   <version>${parversion}</version>
    <relativePath>../SpringBootTest/pom.xml/</relativePath>
     </parent>
 
@@ -52,7 +52,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <dependency>
             <groupId>com.wangziyu</groupId>
             <artifactId>SpringCloudInterface</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${wzyversion}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
