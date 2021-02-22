@@ -30,6 +30,9 @@ public class HelloController implements HelloInter {
     @Value("${server.port}")
     private String port;
 
+    @Autowired
+    private MyInterface1 myInterface1;
+
     @RequestMapping(value = "/sayhello")
 
     public String sayHello(String uName) {
@@ -41,6 +44,15 @@ public class HelloController implements HelloInter {
          * logger.warn("warn日志记录开始"); logger.error("error日志记录开始"); i++; }
          */
         //List<HelloUser>  lh=hd.selectHello();
+        System.out.println("进入spring管理类目标对象方法");
+       /* MyInterface1 myInterface1=new MyInterface1() {
+            @Override
+            public String doFunction1(String str) {
+                System.out.println("进入普通类目标对象方法");
+                return "sucess";
+            }
+        };*/
+        myInterface1.doFunction1("sss");
         return "springbootProvider2:" + port;
     }
 
