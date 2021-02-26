@@ -124,10 +124,14 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			closeBeanFactory();
 		}
 		try {
+			System.out.println("开始创建DefaultListableFactory....");
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
+			System.out.println("DefaultListableFactory创建成功");
 			beanFactory.setSerializationId(getId());
 			customizeBeanFactory(beanFactory);
+			System.out.println("开始将配置转化为BeanDefination...");
 			loadBeanDefinitions(beanFactory);
+			System.out.println("配置转化为BeanDefination完成");
 			this.beanFactory = beanFactory;
 		}
 		catch (IOException ex) {

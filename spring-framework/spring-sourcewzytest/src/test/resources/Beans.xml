@@ -3,9 +3,19 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="wangziyu" class="com.springsource.model.Person">
-		<property name="name" value="素还真"></property>
-		<property name="age" value="17"></property>
+	<!--<bean id="wangziyu" class="com.springsource.model.Person">
+	<property name="name" value="素还真"></property>
+	<property name="age" value="17"></property>
+</bean>-->
+
+	<bean id="student" class="com.springsource.model.Student">
+		<property name="name" value="student1"></property>
+		<property name="teacher" ref="teacher"></property>
+	</bean>
+
+	<bean id="teacher" class="com.springsource.model.Teacher">
+		<property name="name" value="teacher1"></property>
+		<property name="student" ref="student"></property>
 	</bean>
 	</beans>
 

@@ -253,7 +253,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		Object beanInstance;
 
 		// Eagerly check singleton cache for manually registered singletons.
+		System.out.println("开始从一,二,三级缓存中查找"+beanName);
 		Object sharedInstance = getSingleton(beanName);
+		System.out.println("一,二,三级缓存中查找"+beanName+":"+(sharedInstance == null));
 		if (sharedInstance != null && args == null) {
 			if (logger.isTraceEnabled()) {
 				if (isSingletonCurrentlyInCreation(beanName)) {
@@ -295,11 +297,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					return (T) parentBeanFactory.getBean(nameToLookup);
 				}
 			}
-
+           //Bean第一次初始化时 alreadyCreated SET里面没有beanName所以为false 之后会add,变为true
+			System.out.println("开始判断"+beanName+"的创建状态"+typeCheckOnly);
 			if (!typeCheckOnly) {
 				markBeanAsCreated(beanName);
 			}
-
 			StartupStep beanCreation = this.applicationStartup.start("spring.beans.instantiate")
 					.tag("beanName", name);
 			try {
@@ -330,6 +332,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Create bean instance.
 				if (mbd.isSingleton()) {
+					//开始Bean的实例化
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
 							return createBean(beanName, mbd, args);
