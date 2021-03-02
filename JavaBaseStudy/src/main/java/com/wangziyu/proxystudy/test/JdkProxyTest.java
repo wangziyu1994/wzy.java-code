@@ -8,7 +8,10 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public class MyTest {
+/**
+ * JDK动态代理测试
+ */
+public class JdkProxyTest {
     @Test
     public void test1(){
         //类加载器
@@ -30,16 +33,19 @@ public class MyTest {
         //需要代理类的Class对象数组
         Class[] proxyClassArray={AInterface.class, BInterface.class};
         Object obj= Proxy.newProxyInstance(classLoader,proxyClassArray,invocationHandler);
+
         AInterface a=(AInterface)obj;
         BInterface b=(BInterface)obj;
-
+        System.out.println("============================================:");
         String resultA=a.function1("AInterface");
+        System.out.println("============================================:");
         String resultB=b.function2("BInterface");
-        System.out.println(a.getClass());
-        System.out.println(b.getClass());
-        System.out.println(obj.getClass());
-        System.out.println(resultA);
-        System.out.println(resultB);
+        System.out.println("============================================:");
+        System.out.println("a "+a.getClass());
+        System.out.println("b "+b.getClass());
+        System.out.println("obj "+obj.getClass());
+        System.out.println("afunction的返回值:"+resultA);
+        System.out.println("bfunction的返回值"+resultB);
 
     }
 
