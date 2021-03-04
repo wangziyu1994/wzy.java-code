@@ -1037,6 +1037,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 			finally {
 				// Finished partial creation of this bean.
+				//删除这个Bean对象的正在创建状态
 				afterSingletonCreation(beanName);
 			}
 
