@@ -13,6 +13,9 @@ public class AtomicClassTest {
     public AtomicInteger atomicNum=new AtomicInteger(0);
     public int threadNum=5;
     public AtomicReference<Integer> atomicReference=new AtomicReference(100);
+    /**
+     * 解决ABA问题
+     */
     public AtomicStampedReference<Integer> versionReerence=new AtomicStampedReference(100,1);
 
 
