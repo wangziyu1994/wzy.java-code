@@ -7,10 +7,18 @@ public class Son extends Father{
         System.out.println("调用儿子无参构造方法");
     }
 
+    public Son(String name){
+        System.out.println("我是子类一个参数的构造器");
+    }
+
     public Son(String name,String age,String hobbit) {
         super(name,age);
         this.hobbit = hobbit;
         System.out.println("调用儿子有参构造方法");
+    }
+
+    public void common(){
+        System.out.println("我是子类common方法");
     }
 
     public String getHobbit() {

@@ -8,8 +8,14 @@ public class GrandFather {
     }
     public GrandFather(String name) {
         System.out.println("调用爷爷有参构造器方法");
+        this.common();
         this.name = name;
     }
+
+    public void common(){
+        System.out.println("我是爷爷common方法");
+    }
+
 
     @Override
     public String toString() {
