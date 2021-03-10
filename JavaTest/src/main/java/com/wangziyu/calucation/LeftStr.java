@@ -4,6 +4,7 @@ public class LeftStr {
     public static void main(String[] args) {
         String str=getStr("abcdefgh",2);
         System.out.println(str);
+        System.out.println("您好");
     }
 
     public static String getStr(String str,int n){
