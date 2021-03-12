@@ -17,5 +17,6 @@
 		<property name="name" value="teacher1"></property>
 		<property name="student" ref="student"></property>
 	</bean>
+
 	</beans>
 

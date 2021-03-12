@@ -643,6 +643,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Initialize any placeholder property sources in the context environment.
+		//用于拓展实现
 		initPropertySources();
 
 		// Validate that all properties marked as required are resolvable:
@@ -650,7 +651,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		getEnvironment().validateRequiredProperties();
 
 		// Store pre-refresh ApplicationListeners...
-		//用于拓展实现,例如Spring-Boot
+		//用于拓展实现,例如Spring-Boot,将自己实现的监听器放入到applicationListeners当中
 		if (this.earlyApplicationListeners == null) {
 			this.earlyApplicationListeners = new LinkedHashSet<>(this.applicationListeners);
 		}

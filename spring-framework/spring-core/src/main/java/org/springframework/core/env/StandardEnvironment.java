@@ -80,6 +80,7 @@ public class StandardEnvironment extends AbstractEnvironment {
 	 * @see AbstractEnvironment#customizePropertySources(MutablePropertySources)
 	 * @see #getSystemProperties()
 	 * @see #getSystemEnvironment()
+	 * 在父类构造器中会被调用 JAVA多态的应用
 	 */
 	@Override
 	protected void customizePropertySources(MutablePropertySources propertySources) {

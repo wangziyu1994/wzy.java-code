@@ -412,9 +412,11 @@ public class BeanDefinitionParserDelegate {
 	 */
 	@Nullable
 	public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, @Nullable BeanDefinition containingBean) {
+		//获取属性id
 		String id = ele.getAttribute(ID_ATTRIBUTE);
+		//获取属性name
 		String nameAttr = ele.getAttribute(NAME_ATTRIBUTE);
-
+        //获取别名，存储在集合Aliases  List里面
 		List<String> aliases = new ArrayList<>();
 		if (StringUtils.hasLength(nameAttr)) {
 			String[] nameArr = StringUtils.tokenizeToStringArray(nameAttr, MULTI_VALUE_ATTRIBUTE_DELIMITERS);
@@ -431,9 +433,11 @@ public class BeanDefinitionParserDelegate {
 		}
 
 		if (containingBean == null) {
+			//鉴定别名和名称的唯一性
 			checkNameUniqueness(beanName, aliases, ele);
 		}
 
+		//开始实例化BeanDefinition
 		AbstractBeanDefinition beanDefinition = parseBeanDefinitionElement(ele, beanName, containingBean);
 		if (beanDefinition != null) {
 			if (!StringUtils.hasText(beanName)) {
@@ -512,9 +516,11 @@ public class BeanDefinitionParserDelegate {
 		}
 
 		try {
+			//根据Element里面的属性 id,className 反射实例化BeanDefinition
 			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
-
+			//根据Element里面的属性 lazy-init  singleTon ..... 初始化BeanDefinition
 			parseBeanDefinitionAttributes(ele, beanName, containingBean, bd);
+			//根据Element里面的子Element description metaElement property .... 初始化BeanDefinition
 			bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));
 
 			parseMetaElements(ele, bd);
