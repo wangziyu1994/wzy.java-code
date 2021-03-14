@@ -14,7 +14,7 @@ public class ThreadTest {
 
 
     /**
-     * 线程join方法 让执行此方法的线程对象优先执行，其他线程进入堵塞状态
+     * 线程join方法 让执行此方法的线程对象优先执行，其他线程进入堵塞状态,并且yield方法并不让其他等待的线程得到此线程的执行权
      * @throws InterruptedException
      */
     @Test
@@ -22,10 +22,9 @@ public class ThreadTest {
 
         Thread myThread1=new Thread(new MyThread1(),"子线程1");
         myThread1.start();
-        for(int i=0;i<=30;i++){
             myThread1.join();
-            System.out.println("主线程执行"+i);
-        }
+            System.out.println("主线程执行");
+
 
     }
 
