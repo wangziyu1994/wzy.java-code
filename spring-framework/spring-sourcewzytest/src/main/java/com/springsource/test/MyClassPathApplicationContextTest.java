@@ -5,6 +5,6 @@ import org.springframework.context.ApplicationContext;
 
 public class MyClassPathApplicationContextTest {
 	public static void main(String[] args) {
-		ApplicationContext applicationContext=new MyClassPathApplicationContext("Beans.xml");
+		ApplicationContext applicationContext=new MyClassPathApplicationContext("customNameSpace.xml");
 	}
 }

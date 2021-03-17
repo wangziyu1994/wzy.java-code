@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	   xmlns:wzy="http://com.wangziyu.springstudy/wzynamespace"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	                       http://com.wangziyu.springstudy/wzynamespace wzy.xsd"
+>
 
-	<!--<bean id="wangziyu" class="com.springsource.model.Person">
-		<property name="name" value="素还真"></property>
-		<property name="age" value="17"></property>
-	</bean>-->
+<wzy:wzycustomElement   wzycustomAttr="wzycustomAttrValue"/>
+
 
 	<bean id="student" class="com.springsource.model.Student">
 		<property name="name" value="student1"></property>
@@ -17,6 +18,7 @@
 		<property name="name" value="teacher1"></property>
 		<property name="student" ref="student"></property>
 	</bean>
+
 
 	</beans>
 

@@ -1,0 +1,2 @@
+#http\://www.springframework.org/schema/c=org.springframework.beans.factory.xml.SimpleConstructorNamespaceHandler
+http\://com.wangziyu.springstudy/wzynamespace=com.springsource.custom.WzyNameSpaceHandler

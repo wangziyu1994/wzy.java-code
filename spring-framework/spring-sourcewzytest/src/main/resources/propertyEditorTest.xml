@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:wzy="http://com.wangziyu.springstudy/wzynamespace"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	                       http://com.wangziyu.springstudy/wzynamespace wzy.xsd"
+>
+
+    <bean id="wzyPerson" class="com.springsource.custom.WzyPerson">
+        <property name="id" value="wangziyu19941123"></property>
+        <property name="WzyPropertyJavaBean" value="wangziyu-game-霞之丘诗羽"></property>
+    </bean>
+
+	<bean id="wzyPropertyEditor" class="com.springsource.custom.WzyPropertyEditor">
+	</bean>
+
+	<bean id="wzyCustomEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<!--<property name="propertyEditorRegistrars">
+			<list>
+				<bean name="wzyPropertyEditorRegister" class="com.springsource.custom.WzyPropertyEditorRegister"></bean>
+			</list>
+		</property>-->
+		<property name="customEditors">
+			<map>
+				<entry key="com.springsource.custom.WzyPropertyJavaBean" value="com.springsource.custom.WzyPropertyEditor"/>
+			</map>
+		</property>
+	</bean>
+
+
+
+
+</beans>
+
