@@ -15,10 +15,15 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ReentrantLockTest {
    public static Integer count=0;
 
+    public static void main(String[] args) throws InterruptedException {
+        test1();
+    }
+
    @Test
-    public void test1() throws InterruptedException {
-       ReentrantLock reentrantLock=new ReentrantLock();
-       Thread main=Thread.currentThread();
+    public static void test1() throws InterruptedException {
+
+       ReentrantLock reentrantLock=new ReentrantLock(true);
+
         Thread t1=new Thread(()->{
             reentrantLock.lock();
             for(int i=0;i<=999;i++){

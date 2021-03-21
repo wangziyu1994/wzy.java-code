@@ -6,21 +6,21 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 public class CyclicBarrierTest {
-    private int size=10;
+    private int size = 10;
 
     //第一种写法
-    private CyclicBarrier cyclicBarrier=new CyclicBarrier(size);
+    private CyclicBarrier cyclicBarrier = new CyclicBarrier(size);
 
     //第二种写法
-    private CyclicBarrier secondCyclic=new CyclicBarrier(size,new Thread(()->{
-        System.out.println("我是线程" + Thread.currentThread().getName() + "到達"+size);
+    private CyclicBarrier secondCyclic = new CyclicBarrier(size, new Thread(() -> {
+        System.out.println("我是线程" + Thread.currentThread().getName() + "到達cyclic栅栏数量" + size);
     }));
 
     @Test
     public void test1() throws BrokenBarrierException, InterruptedException {
 
-        for(int i=0;i<=size-1;i++){
-            Thread t=new Thread(()->{
+        for (int i = 0; i <= size - 1; i++) {
+            Thread t = new Thread(() -> {
                 System.out.println("我是线程" + Thread.currentThread().getName() + "已到达栅栏");
                 try {
                     cyclicBarrier.await();
@@ -32,7 +32,7 @@ public class CyclicBarrierTest {
                 }
 
             });
-          t.start();
+            t.start();
         }
 
         System.out.println("主线程等待....");
@@ -42,20 +42,20 @@ public class CyclicBarrierTest {
 
     @Test
     public void test2() throws BrokenBarrierException, InterruptedException {
-for(int i=0;i<=size+50;i++) {
-    Thread t=new Thread(()->{
-        System.out.println("我是线程" + Thread.currentThread().getName() + "开始运行");
-        try {
-            secondCyclic.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (BrokenBarrierException e) {
-            e.printStackTrace();
+        for (int i = 0; i <= size + 50; i++) {
+            Thread t = new Thread(() -> {
+                System.out.println("我是线程" + Thread.currentThread().getName() + "开始运行");
+                try {
+                    secondCyclic.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+            });
+            t.start();
+
+
         }
-    });
-    t.start();
-
-
-}
     }
 }
