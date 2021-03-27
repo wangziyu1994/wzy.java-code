@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.*;
-
 public class QueueTest {
     public static int size = 5;
     public static Queue<String> commonQueue = new ConcurrentLinkedQueue<>();//非阻塞线程安全的队列  //无界队列
@@ -35,8 +34,8 @@ public class QueueTest {
         //arrayBlockingQueueTest();
         //pritorQueueTest();
         //delayedQueueTest();
-       // synchronQueueTest();
-        tranferQueueTest();
+        //synchronQueueTest();
+        //tranferQueueTest();
     }
 
 
