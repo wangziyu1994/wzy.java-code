@@ -123,9 +123,12 @@ abstract class ConfigurationClassUtils {
 
 		Map<String, Object> config = metadata.getAnnotationAttributes(Configuration.class.getName());
 		if (config != null && !Boolean.FALSE.equals(config.get("proxyBeanMethods"))) {
+			//设置ConfigurationClass full属性值
 			beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_FULL);
 		}
+		//判断@Configuration以外注解修饰的类(@component  @Import ......) isConfigurationCandidate()
 		else if (config != null || isConfigurationCandidate(metadata)) {
+			//设置ConfigurationClass lite属性
 			beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_LITE);
 		}
 		else {
@@ -154,6 +157,7 @@ abstract class ConfigurationClassUtils {
 			return false;
 		}
 
+		//candidateIndicators里面包含四个注解的名字 @component,@Import,@ImportResource,@ComponentScan
 		// Any of the typical annotations found?
 		for (String indicator : candidateIndicators) {
 			if (metadata.isAnnotated(indicator)) {
@@ -162,6 +166,7 @@ abstract class ConfigurationClassUtils {
 		}
 
 		// Finally, let's look for @Bean methods...
+		//判断方法是否有@Bean注解修饰
 		try {
 			return metadata.hasAnnotatedMethods(Bean.class.getName());
 		}

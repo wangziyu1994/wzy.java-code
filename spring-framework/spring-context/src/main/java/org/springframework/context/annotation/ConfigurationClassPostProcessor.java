@@ -86,6 +86,9 @@ import org.springframework.util.ClassUtils;
  * @author Juergen Hoeller
  * @author Phillip Webb
  * @since 3.0
+ *
+ * 非常重要的一个核心类,继承BeanDefinitionRegistryPostProcessor
+ * 后续postProcessBeanDefinitionRegistry，postProcessBeanFactory方法都会被调用
  */
 public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor,
 		PriorityOrdered, ResourceLoaderAware, ApplicationStartupAware, BeanClassLoaderAware, EnvironmentAware {
@@ -243,6 +246,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		}
 		this.registriesPostProcessed.add(registryId);
 
+		//关键方法 注意!!!!!!!!!!!!!!!!!!!
 		processConfigBeanDefinitions(registry);
 	}
 
@@ -278,11 +282,13 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 		for (String beanName : candidateNames) {
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);
+			//判断是否有configurationClass属性
 			if (beanDef.getAttribute(ConfigurationClassUtils.CONFIGURATION_CLASS_ATTRIBUTE) != null) {
 				if (logger.isDebugEnabled()) {
 					logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);
 				}
 			}
+			//判断是否是spring注解修饰的类如 @Configuration @Component @Import @ImportResource 有的话则加入当前 configCandidates List
 			else if (ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)) {
 				configCandidates.add(new BeanDefinitionHolder(beanDef, beanName));
 			}
@@ -319,14 +325,17 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		}
 
 		// Parse each @Configuration class
+		//准备注解修饰类的解析
 		ConfigurationClassParser parser = new ConfigurationClassParser(
 				this.metadataReaderFactory, this.problemReporter, this.environment,
 				this.resourceLoader, this.componentScanBeanNameGenerator, registry);
-
+       //准备解析注解Bean容器
 		Set<BeanDefinitionHolder> candidates = new LinkedHashSet<>(configCandidates);
+		//准备已解析注解Bean容器
 		Set<ConfigurationClass> alreadyParsed = new HashSet<>(configCandidates.size());
 		do {
 			StartupStep processConfig = this.applicationStartup.start("spring.context.config-classes.parse");
+			//开始注解Bean的转换工作
 			parser.parse(candidates);
 			parser.validate();
 

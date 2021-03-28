@@ -136,7 +136,8 @@ public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisito
 	}
 
 	@Override
-	public boolean isAnnotated(String annotationName) {
+	public boolean
+	isAnnotated(String annotationName) {
 		return (!AnnotationUtils.isInJavaLangAnnotationPackage(annotationName) &&
 				this.attributesMap.containsKey(annotationName));
 	}
