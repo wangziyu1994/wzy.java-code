@@ -64,7 +64,6 @@ public class SingleBeanInital1 {
         }
         return singleBeanInital1;
 
-
     }
 }
 

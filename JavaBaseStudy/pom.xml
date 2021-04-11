@@ -46,7 +46,17 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.wangziyu</groupId>
+            <artifactId>WzyJavaAgent</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.9</version>
+        </dependency>
     </dependencies>
 
 

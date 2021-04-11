@@ -8,8 +8,8 @@ public class Father extends GrandFather {
     }
 
     public Father(String name,String age) {
-        //super(name);
-        this(name);
+        super(name);
+        //this(name);
         System.out.println("调用父亲有参构造方法");
         this.age=age;
         this.common();
