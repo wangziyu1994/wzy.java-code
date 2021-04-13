@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:wzy="http://com.wangziyu.springstudy/wzynamespace"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	                       http://com.wangziyu.springstudy/wzynamespace wzy.xsd"
+>
+	<bean id="staticFactory-person1" class="com.springsource.factorymethodstudy.WzyStaticBeanFactory" factory-method="createPerson" scope="prototype">
+		<constructor-arg value="10"></constructor-arg>
+		<constructor-arg value="staticBeanPerson"></constructor-arg>
+	</bean>
+
+	<bean id="staticFactory-person2" class="com.springsource.factorymethodstudy.WzyStaticBeanFactory" factory-method="createPerson" scope="singleton">
+		<constructor-arg value="11"></constructor-arg>
+	</bean>
+
+	<bean id="wzyInstanceBeanFactory" class="com.springsource.factorymethodstudy.WzyInstanceBeanFactory" >
+	</bean>
+	<bean id="instanceFactory-person1" class="com.springsource.factorymethodstudy.Person" factory-bean="wzyInstanceBeanFactory" factory-method="createPerson" scope="prototype">
+		<constructor-arg value="12"></constructor-arg>
+		<constructor-arg value="instanceBeanPerson"></constructor-arg>
+	</bean>
+
+	<bean id="instanceFactory-person2" class="com.springsource.factorymethodstudy.Person" factory-bean="wzyInstanceBeanFactory" factory-method="createPerson" scope="singleton">
+		<constructor-arg value="13"></constructor-arg>
+	</bean>
+
+</beans>
+

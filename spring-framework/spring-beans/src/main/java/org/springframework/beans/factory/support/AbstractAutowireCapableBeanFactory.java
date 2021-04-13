@@ -510,6 +510,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		try {
 			// Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.
+			//如果工厂中含有InstantiationAwareBeanPostProcessor的话,那么会用他的beforepost方法来实例化相应的Bean
 			Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
 			if (bean != null) {
 				return bean;
@@ -562,11 +563,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 		if (instanceWrapper == null) {
 			//（1）.创建bean包装类BealWrapper，这段代码执行结束，说明bean已经构建完成，在堆上创建了实例
-			System.out.println("开始调用"+beanName+"创建对象");
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		Object bean = instanceWrapper.getWrappedInstance();
-		System.out.println("创建后的对象"+bean);
 		Class<?> beanType = instanceWrapper.getWrappedClass();
 		if (beanType != NullBean.class) {
 			mbd.resolvedTargetType = beanType;
@@ -1171,17 +1170,18 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	protected BeanWrapper createBeanInstance(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) {
 		// Make sure bean class is actually resolved at this point.
 		Class<?> beanClass = resolveBeanClass(mbd, beanName);
-
+        //判断当前Bean的类型是否是Public访问权限，如果不是抛出Exception
 		if (beanClass != null && !Modifier.isPublic(beanClass.getModifiers()) && !mbd.isNonPublicAccessAllowed()) {
 			throw new BeanCreationException(mbd.getResourceDescription(), beanName,
 					"Bean class isn't public, and non-public access not allowed: " + beanClass.getName());
 		}
-
+        //开始当前BeanDefinition的Supplier,此BeanDefinition supplier的设置用BFPP通过设置BeanDefinition的 instanceSupplier属性实现
 		Supplier<?> instanceSupplier = mbd.getInstanceSupplier();
 		if (instanceSupplier != null) {
 			return obtainFromSupplier(instanceSupplier, beanName);
 		}
 
+		//判断此BeanDefinition的factoryMethod属性，如果有的话采用FactoryMethod的形式来创建对象
 		if (mbd.getFactoryMethodName() != null) {
 			return instantiateUsingFactoryMethod(beanName, mbd, args);
 		}
@@ -1237,6 +1237,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		String outerBean = this.currentlyCreatedBean.get();
 		this.currentlyCreatedBean.set(beanName);
 		try {
+			//调用实现supplier接口的get方法
 			instance = instanceSupplier.get();
 		}
 		finally {
@@ -1251,7 +1252,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (instance == null) {
 			instance = new NullBean();
 		}
+		//创建此对象的包装类
 		BeanWrapper bw = new BeanWrapperImpl(instance);
+		//初始化此对象，填充属性
 		initBeanWrapper(bw);
 		return bw;
 	}

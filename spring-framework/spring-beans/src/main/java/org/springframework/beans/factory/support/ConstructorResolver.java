@@ -402,6 +402,7 @@ class ConstructorResolver {
 		boolean isStatic;
 
 		String factoryBeanName = mbd.getFactoryBeanName();
+		//判断是静态工厂创建Bean还是实例工厂创建Bean
 		if (factoryBeanName != null) {
 			if (factoryBeanName.equals(beanName)) {
 				throw new BeanDefinitionStoreException(mbd.getResourceDescription(), beanName,
@@ -456,6 +457,7 @@ class ConstructorResolver {
 			factoryClass = ClassUtils.getUserClass(factoryClass);
 
 			List<Method> candidates = null;
+			//判断factoryMethod是不是唯一的
 			if (mbd.isFactoryMethodUnique) {
 				if (factoryMethodToUse == null) {
 					factoryMethodToUse = mbd.getResolvedFactoryMethod();

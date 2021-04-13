@@ -139,7 +139,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	protected void addSingleton(String beanName, Object singletonObject) {
 		synchronized (this.singletonObjects) {
-			System.out.println(beanName+"清空二级缓存,三级缓存,移动至一级缓存");
 			this.singletonObjects.put(beanName, singletonObject);
 			this.singletonFactories.remove(beanName);
 			this.earlySingletonObjects.remove(beanName);
@@ -187,9 +186,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
 		// Quick check for existing instance without full singleton lock
 		//判断一级缓存中是否存在此Bean
-		System.out.println("开始判断一级缓存singletonObjects是否存在"+beanName);
 		Object singletonObject = this.singletonObjects.get(beanName);
-		System.out.println("一级缓存singletonObjects "+beanName+":"+singletonObject == null);
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			singletonObject = this.earlySingletonObjects.get(beanName);
 			if (singletonObject == null && allowEarlyReference) {
@@ -197,18 +194,12 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					// Consistent creation of early reference within full singleton lock
 					singletonObject = this.singletonObjects.get(beanName);
 					if (singletonObject == null) {
-						System.out.println("开始判断二级缓存earlySingletonObjects是否存在"+beanName);
 						singletonObject = this.earlySingletonObjects.get(beanName);
-						System.out.println("二级缓存earlySingletonObjects "+beanName+":"+earlySingletonObjects);
 						if (singletonObject == null) {
-							System.out.println("开始判断三级缓存singletonFactories是否存在"+beanName);
 							ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
-							System.out.println("三级缓存singletonFactories "+beanName+":"+singletonFactories);
 							if (singletonFactory != null) {
 								//重点,调用三级缓存里面singletonFactory的lamda表达式中的方法
-								System.out.println(beanName+":调用getEarlyReference()方法");
 								singletonObject = singletonFactory.getObject();
-								System.out.println(beanName+"由ObjectFactory转化为Object,由三级工厂移动至二级工厂");
 								this.earlySingletonObjects.put(beanName, singletonObject);
 								this.singletonFactories.remove(beanName);
 							}
@@ -248,7 +239,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					this.suppressedExceptions = new LinkedHashSet<>();
 				}
 				try {
-					System.out.println(beanName+"开始实例化与初始化");
 					singletonObject = singletonFactory.getObject();
 					newSingleton = true;
 				}
