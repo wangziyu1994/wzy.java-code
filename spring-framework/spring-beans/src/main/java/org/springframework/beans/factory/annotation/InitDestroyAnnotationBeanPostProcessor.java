@@ -146,7 +146,9 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 	@Override
 	public void postProcessMergedBeanDefinition(RootBeanDefinition beanDefinition, Class<?> beanType, String beanName) {
+		//获取此类以及所有父类的postConsturctor方法以及preDestroy方法，并且初始化为lifecycleMeta包装对象
 		LifecycleMetadata metadata = findLifecycleMetadata(beanType);
+		//将lifemeta相关信息注册到当前BD当中
 		metadata.checkConfigMembers(beanDefinition);
 	}
 
@@ -225,6 +227,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 		List<LifecycleElement> destroyMethods = new ArrayList<>();
 		Class<?> targetClass = clazz;
 
+		//遍历获取当前类以及他的所有父类的@postConstructor方法以及@preDestroy方法
 		do {
 			final List<LifecycleElement> currInitMethods = new ArrayList<>();
 			final List<LifecycleElement> currDestroyMethods = new ArrayList<>();

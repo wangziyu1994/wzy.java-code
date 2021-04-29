@@ -985,6 +985,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		BeanPostProcessorCache bpCache = this.beanPostProcessorCache;
 		if (bpCache == null) {
 			bpCache = new BeanPostProcessorCache();
+			//遍历所有BeanPostProcessor,分别将各种种类的BP加入到各类集合
 			for (BeanPostProcessor bp : this.beanPostProcessors) {
 				if (bp instanceof InstantiationAwareBeanPostProcessor) {
 					bpCache.instantiationAware.add((InstantiationAwareBeanPostProcessor) bp);
@@ -996,6 +997,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					bpCache.destructionAware.add((DestructionAwareBeanPostProcessor) bp);
 				}
 				if (bp instanceof MergedBeanDefinitionPostProcessor) {
+					//将mergedDefinition 加入到缓存的集合当中去
 					bpCache.mergedDefinition.add((MergedBeanDefinitionPostProcessor) bp);
 				}
 			}

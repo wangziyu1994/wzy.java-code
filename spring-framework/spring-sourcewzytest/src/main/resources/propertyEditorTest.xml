@@ -22,7 +22,8 @@
 		</property>-->
 		<property name="customEditors">
 			<map>
-				<entry key="com.springsource.custom.WzyPropertyJavaBean" value="com.springsource.custom.WzyPropertyEditor"/>
+				<entry key="com.springsource.custom.WzyPropertyJavaBean" value="com.springsource.custom.
+"/>
 			</map>
 		</property>
 	</bean>

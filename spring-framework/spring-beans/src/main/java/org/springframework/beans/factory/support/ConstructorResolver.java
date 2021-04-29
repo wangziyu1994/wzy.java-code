@@ -197,7 +197,7 @@ class ConstructorResolver {
 				resolvedValues = new ConstructorArgumentValues();
 				minNrOfArgs = resolveConstructorArguments(beanName, mbd, bw, cargs, resolvedValues);
 			}
-
+            //对构造器按数量进行排序，参数数量多的放在前面，后续根据排序遍历对应的构造器，如果传入参数个数都小于构造器参数个数，则可以进行下一构造器匹配
 			AutowireUtils.sortConstructors(candidates);
 			int minTypeDiffWeight = Integer.MAX_VALUE;
 			Set<Constructor<?>> ambiguousConstructors = null;
@@ -287,6 +287,7 @@ class ConstructorResolver {
 						ambiguousConstructors);
 			}
 
+			//如果构造器选择成功,那么将构造器加入BeanDefinition的构造器缓存之中
 			if (explicitArgs == null && argsHolderToUse != null) {
 				argsHolderToUse.storeCache(mbd, constructorToUse);
 			}
