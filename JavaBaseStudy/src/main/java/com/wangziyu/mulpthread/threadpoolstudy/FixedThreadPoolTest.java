@@ -30,9 +30,9 @@ public class FixedThreadPoolTest {
             executorService.submit(callable);
         }
 
-        while (!executorService.isShutdown()){
+        /*while (!executorService.isShutdown()){
             TimeUnit.SECONDS.sleep(1);
             System.out.println(executorService);
-        }
+        }*/
     }
 }

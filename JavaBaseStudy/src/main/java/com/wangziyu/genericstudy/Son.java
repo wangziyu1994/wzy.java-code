@@ -1,4 +1,4 @@
 package com.wangziyu.genericstudy;
 
-public class Son extends Parents {
+public class Son<E> extends MyGenericMethod<E> {
 }

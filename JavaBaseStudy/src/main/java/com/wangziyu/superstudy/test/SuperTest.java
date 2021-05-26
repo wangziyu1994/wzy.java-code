@@ -1,5 +1,7 @@
 package com.wangziyu.superstudy.test;
 
+import com.wangziyu.superstudy.model.Father;
+import com.wangziyu.superstudy.model.GrandFather;
 import com.wangziyu.superstudy.model.Son;
 
 public class SuperTest {
@@ -14,5 +16,7 @@ public class SuperTest {
         //Son son1=new  Son();
         Son son2=new  Son("wangziyu","17","basketBall");
         System.out.println(son2);
+        GrandFather father=(Father)son2;
+        System.out.println(father);
     }
 }

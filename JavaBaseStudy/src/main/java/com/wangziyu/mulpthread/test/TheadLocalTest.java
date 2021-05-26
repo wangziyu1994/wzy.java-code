@@ -29,5 +29,7 @@ public class TheadLocalTest {
         },"T2").start();
 
             TimeUnit.SECONDS.sleep(10);
+            threadLocal.remove();
     }
+
 }

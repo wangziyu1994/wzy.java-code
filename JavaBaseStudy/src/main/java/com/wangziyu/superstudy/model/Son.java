@@ -2,6 +2,7 @@ package com.wangziyu.superstudy.model;
 
 public class Son extends Father{
     private String hobbit;
+    private String age="我是子类的age";
 
     public Son() {
         System.out.println("调用儿子无参构造方法");
@@ -33,6 +34,7 @@ public class Son extends Father{
     public String toString() {
         return "Son{" +
                 "hobbit='" + hobbit + '\'' +
+                ", age='" + age + '\'' +
                 '}';
     }
 }

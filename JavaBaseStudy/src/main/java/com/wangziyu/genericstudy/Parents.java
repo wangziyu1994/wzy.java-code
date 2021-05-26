@@ -1,6 +1,6 @@
 package com.wangziyu.genericstudy;
 
-public class Parents {
+public class Parents extends ParOfParent{
     private String name;
 
     public String getName() {
