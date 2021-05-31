@@ -16,6 +16,7 @@ public class TryCatchFinallyTest {
 
     public void dosomethingWithReturn() {
         try {
+            System.out.println("dosomethingWithReturn");
             throw new RuntimeException("运行时异常");
         } finally {
             System.out.println("finally块的语句执行");
@@ -63,5 +64,37 @@ public class TryCatchFinallyTest {
                }
            }
         }
+    }
+
+
+    /**
+     * 测试try 块中的return 代码和finally 代码执行顺序
+     * @param args
+     */
+    public static void main(String[] args) {
+        test4();
+    }
+
+
+    public static int test4(){
+        boolean flag=false;
+        if(flag){
+            System.out.println("try块外面return");
+            return  returnMethod();
+        }
+
+        try {
+            System.out.println("dosomething");
+            return  returnMethod();
+        }
+        finally {
+            System.out.println("finally语句块内容");
+            return 2;
+        }
+    }
+
+    public static int returnMethod(){
+        System.out.println("我是return后的内容");
+        return 1;
     }
     }
