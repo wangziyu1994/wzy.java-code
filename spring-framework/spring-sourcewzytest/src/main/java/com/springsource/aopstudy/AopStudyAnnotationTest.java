@@ -11,9 +11,10 @@ import java.util.Properties;
 public class AopStudyAnnotationTest {
 	public static void main(String[] args) throws Exception {
 		AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext();
-		applicationContext.register(WzyLogAopAnnotation.class);
+		applicationContext.register(WzyLogAopAnnotation.class,WzyTargetAnnotation.class);
 		applicationContext.refresh();
-		WzyTarget a=applicationContext.getBean(WzyTarget.class);
+		WzyTargetAnnotation a=applicationContext.getBean(WzyTargetAnnotation.class);
+		System.out.println(a.getClass().getName());
 		a.wzytargetMethod();
 	}
 
