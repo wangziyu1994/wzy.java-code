@@ -102,6 +102,7 @@ public class ProxyCreatorSupport extends AdvisedSupport {
 		if (!this.active) {
 			activate();
 		}
+		//createAopProxy 选择具体采用jdk动态代理还是cglib动态代理机制
 		return getAopProxyFactory().createAopProxy(this);
 	}
 

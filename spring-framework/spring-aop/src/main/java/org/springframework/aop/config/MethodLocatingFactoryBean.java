@@ -74,6 +74,7 @@ public class MethodLocatingFactoryBean implements FactoryBean<Method>, BeanFacto
 		if (beanClass == null) {
 			throw new IllegalArgumentException("Can't determine type of bean with name '" + this.targetBeanName + "'");
 		}
+		//在BeanFactoryWare接口的调用中,实现method属性的赋值
 		this.method = BeanUtils.resolveSignature(this.methodName, beanClass);
 
 		if (this.method == null) {

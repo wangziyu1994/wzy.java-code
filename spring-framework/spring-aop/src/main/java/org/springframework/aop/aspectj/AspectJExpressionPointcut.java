@@ -290,6 +290,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 	}
 
 	@Override
+	//判断targetClass是否需要被动态代理
 	public boolean matches(Method method, Class<?> targetClass, boolean hasIntroductions) {
 		obtainPointcutExpression();
 		ShadowMatch shadowMatch = getTargetShadowMatch(method, targetClass);

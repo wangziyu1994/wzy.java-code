@@ -706,6 +706,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 
 		@Override
 		public boolean matches(Method method, Class<?> targetClass) {
+			//判断advisor的method对象是否是表达式的方法，如果是返回false 不是返回true
 			return !this.adviceMethod.equals(method);
 		}
 

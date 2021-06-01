@@ -596,8 +596,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				logger.trace("Eagerly caching bean '" + beanName +
 						"' to allow for resolving potential circular references");
 			}
+			//传入一个ObjectFactory的匿名内存类对象。方便后续动态代理的时候，进行回调
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
+
+		//直接将lamda表达式生成代理对象，并且放入二级缓存。测试两级缓存是否能解决，代理对象被引用问题。
+		//getSingleton(beanName, true);
 
 		// Initialize the bean instance.
 		//存储最终对象的值,比如被初始化后或者被代理

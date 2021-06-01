@@ -184,6 +184,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		// Quick check for existing instance without full singleton lock
 		//判断一级缓存中是否存在此Bean
 		Object singletonObject = this.singletonObjects.get(beanName);
+		//判断一级缓存中是否存在，并且bean是否存在正在创建的阶段
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			singletonObject = this.earlySingletonObjects.get(beanName);
 			if (singletonObject == null && allowEarlyReference) {
@@ -195,7 +196,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 						if (singletonObject == null) {
 							ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 							if (singletonFactory != null) {
-								//重点,调用三级缓存里面singletonFactory的lamda表达式中的方法
+								//重点,调用三级缓存里面singletonFactory的lamda表达式中的方法,getEarlyReference()
 								singletonObject = singletonFactory.getObject();
 								this.earlySingletonObjects.put(beanName, singletonObject);
 								this.singletonFactories.remove(beanName);
