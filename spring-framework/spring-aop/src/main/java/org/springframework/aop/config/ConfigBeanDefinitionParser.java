@@ -108,9 +108,11 @@ class ConfigBeanDefinitionParser implements BeanDefinitionParser {
 		List<Element> childElts = DomUtils.getChildElements(element);
 		for (Element elt: childElts) {
 			String localName = parserContext.getDelegate().getLocalName(elt);
+			//如果是<aop:config>下的<aop:pointcut>的标签的话，构建AspectJExpressionPointcut类的BD，注册到工厂
 			if (POINTCUT.equals(localName)) {
 				parsePointcut(elt, parserContext);
 			}
+			//如果是<aop:config>下的<aop:advisor>的标签的话,构建DefaultBeanFactoryPointcutAdvisor类的BD，注册到工厂
 			else if (ADVISOR.equals(localName)) {
 				parseAdvisor(elt, parserContext);
 			}

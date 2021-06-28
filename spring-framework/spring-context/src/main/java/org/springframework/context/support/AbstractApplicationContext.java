@@ -419,6 +419,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			this.earlyApplicationEvents.add(applicationEvent);
 		}
 		else {
+			//获取applicationcontext的广播器，并且传播触发事件到与之相匹配的监听器上
 			getApplicationEventMulticaster().multicastEvent(applicationEvent, eventType);
 		}
 
@@ -594,6 +595,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.
+				//spring-mvc会在此方法中，触发ContextRefreshListener
 				finishRefresh();
 			}
 
@@ -951,6 +953,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		getLifecycleProcessor().onRefresh();
 
 		// Publish the final event.
+		//触发springmvc 在servlet-init方法中设置好的监听器,与ContextRefreshListener的事件匹配
 		publishEvent(new ContextRefreshedEvent(this));
 
 		// Participate in LiveBeansView MBean, if active.

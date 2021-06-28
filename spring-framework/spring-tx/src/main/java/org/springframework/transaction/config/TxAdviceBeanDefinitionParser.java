@@ -73,6 +73,7 @@ class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
 	@Override
 	protected void doParse(Element element, ParserContext parserContext, BeanDefinitionBuilder builder) {
+		//给TransactionInterceptor类的BD设置transactionManager属性。属性值是RunTimeReference
 		builder.addPropertyReference("transactionManager", TxNamespaceHandler.getTransactionManagerName(element));
 
 		List<Element> txAttributes = DomUtils.getChildElementsByTagName(element, ATTRIBUTES_ELEMENT);
@@ -83,7 +84,9 @@ class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 		else if (txAttributes.size() == 1) {
 			// Using attributes source.
 			Element attributeSourceElement = txAttributes.get(0);
+			//解析<tx:attributes>标签的子标签<tx:method>
 			RootBeanDefinition attributeSourceDefinition = parseAttributeSource(attributeSourceElement, parserContext);
+			//将<tx:attributes>标签转化为BD并且填充到ransactionInterceptor类的BD的transactionAttributeSource属性
 			builder.addPropertyValue("transactionAttributeSource", attributeSourceDefinition);
 		}
 		else {
@@ -98,16 +101,21 @@ class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 		ManagedMap<TypedStringValue, RuleBasedTransactionAttribute> transactionAttributeMap =
 				new ManagedMap<>(methods.size());
 		transactionAttributeMap.setSource(parserContext.extractSource(attrEle));
-
+        //循环解析<tx:attributes>子标签<tx:method>
 		for (Element methodEle : methods) {
+			//获取name属性值
 			String name = methodEle.getAttribute(METHOD_NAME_ATTRIBUTE);
 			TypedStringValue nameHolder = new TypedStringValue(name);
 			nameHolder.setSource(parserContext.extractSource(methodEle));
 
 			RuleBasedTransactionAttribute attribute = new RuleBasedTransactionAttribute();
+			//获取propagation属性值
 			String propagation = methodEle.getAttribute(PROPAGATION_ATTRIBUTE);
+			//获取isolation属性值
 			String isolation = methodEle.getAttribute(ISOLATION_ATTRIBUTE);
+			//获取timeout属性值
 			String timeout = methodEle.getAttribute(TIMEOUT_ATTRIBUTE);
+			//获取read_only属性值
 			String readOnly = methodEle.getAttribute(READ_ONLY_ATTRIBUTE);
 			if (StringUtils.hasText(propagation)) {
 				attribute.setPropagationBehaviorName(RuleBasedTransactionAttribute.PREFIX_PROPAGATION + propagation);
@@ -123,14 +131,17 @@ class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 			}
 
 			List<RollbackRuleAttribute> rollbackRules = new ArrayList<>(1);
+			//获取rollback_for属性值
 			if (methodEle.hasAttribute(ROLLBACK_FOR_ATTRIBUTE)) {
 				String rollbackForValue = methodEle.getAttribute(ROLLBACK_FOR_ATTRIBUTE);
 				addRollbackRuleAttributesTo(rollbackRules, rollbackForValue);
 			}
+			//获取no_rollback_for属性值
 			if (methodEle.hasAttribute(NO_ROLLBACK_FOR_ATTRIBUTE)) {
 				String noRollbackForValue = methodEle.getAttribute(NO_ROLLBACK_FOR_ATTRIBUTE);
 				addNoRollbackRuleAttributesTo(rollbackRules, noRollbackForValue);
 			}
+			//设置rollbackRules属性
 			attribute.setRollbackRules(rollbackRules);
 
 			transactionAttributeMap.put(nameHolder, attribute);
@@ -138,6 +149,7 @@ class TxAdviceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
 		RootBeanDefinition attributeSourceDefinition = new RootBeanDefinition(NameMatchTransactionAttributeSource.class);
 		attributeSourceDefinition.setSource(parserContext.extractSource(attrEle));
+		//将<tx:arrtrbute>子标签的值都转化为一个map放入TransactionInterceptor类BD的nameMap属性当中
 		attributeSourceDefinition.getPropertyValues().add("nameMap", transactionAttributeMap);
 		return attributeSourceDefinition;
 	}

@@ -63,4 +63,5 @@ settings.gradle.projectsLoaded {
 	}
 }
 include 'spring-sourcewzytest'
+include 'spring-mvcstudy'
 

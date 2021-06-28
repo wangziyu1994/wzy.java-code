@@ -51,6 +51,7 @@ public abstract class AspectJProxyUtils {
 			for (Advisor advisor : advisors) {
 				// Be careful not to get the Advice without a guard, as this might eagerly
 				// instantiate a non-singleton AspectJ aspect...
+				//注意此处里面会调用事务DefaultBeanFactoryPointcutAdvisor实现类的getAdvice方法实例化advice
 				if (isAspectJAdvice(advisor)) {
 					foundAspectJAdvice = true;
 					break;
@@ -69,6 +70,7 @@ public abstract class AspectJProxyUtils {
 	 * @param advisor the Advisor to check
 	 */
 	private static boolean isAspectJAdvice(Advisor advisor) {
+		//事务advisor会调用getAdvice 实例化自己的advice对象，并且填充属性
 		return (advisor instanceof InstantiationModelAwarePointcutAdvisor ||
 				advisor.getAdvice() instanceof AbstractAspectJAdvice ||
 				(advisor instanceof PointcutAdvisor &&

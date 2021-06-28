@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'war'
 }
 
 group 'org.springframework'
@@ -18,8 +19,8 @@ dependencies {
     compile(project(":spring-tx"))
     compile(project(":spring-jdbc"))
     compile("mysql:mysql-connector-java:8.0.11")
-    compile("c3p0:c3p0:0.9.1.2")
     compile("com.alibaba:druid:1.2.4")
     compile(project(":spring-webmvc"))
+    compile(project(":spring-web"))
     compile group: 'junit', name: 'junit', version: '4.12'
 }

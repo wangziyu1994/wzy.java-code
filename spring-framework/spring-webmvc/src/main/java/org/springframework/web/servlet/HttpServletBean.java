@@ -147,8 +147,9 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 	 */
 	@Override
 	public final void init() throws ServletException {
-
+		//tomcat容器执行servelt的init方法
 		// Set bean properties from init parameters.
+		//将DispatchServlet 的参数封装为PropertyValues对象
 		PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);
 		if (!pvs.isEmpty()) {
 			try {
@@ -165,7 +166,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 				throw ex;
 			}
 		}
-
+         //核心，创建springMVC容器
 		// Let subclasses do whatever initialization they like.
 		initServletBean();
 	}

@@ -34,6 +34,7 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
  * @since 3.1
  * @see EnableTransactionManagement
  * @see TransactionManagementConfigurationSelector
+ * 注解配置事务的配置类
  */
 @Configuration(proxyBeanMethods = false)
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)

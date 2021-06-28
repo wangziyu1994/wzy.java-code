@@ -275,6 +275,7 @@ public class ContextLoader {
 		try {
 			// Store context in local instance variable, to guarantee that
 			// it is available on ServletContext shutdown.
+			//创建出ApplicationContext
 			if (this.context == null) {
 				this.context = createWebApplicationContext(servletContext);
 			}
@@ -289,6 +290,7 @@ public class ContextLoader {
 						ApplicationContext parent = loadParentContext(servletContext);
 						cwac.setParent(parent);
 					}
+					//设置ApplicationContext的属性
 					configureAndRefreshWebApplicationContext(cwac, servletContext);
 				}
 			}
@@ -327,8 +329,10 @@ public class ContextLoader {
 	 * @param sc current servlet context
 	 * @return the root WebApplicationContext
 	 * @see ConfigurableWebApplicationContext
+	 * 创建webcontext 上下文
 	 */
 	protected WebApplicationContext createWebApplicationContext(ServletContext sc) {
+		//决定创建哪种类型的webApplicationContext
 		Class<?> contextClass = determineContextClass(sc);
 		if (!ConfigurableWebApplicationContext.class.isAssignableFrom(contextClass)) {
 			throw new ApplicationContextException("Custom context class [" + contextClass.getName() +
@@ -356,6 +360,7 @@ public class ContextLoader {
 						"Failed to load custom context class [" + contextClassName + "]", ex);
 			}
 		}
+		//默认使用以下context类 从spring-web jar下contextLoader.properties的org.springframework.web.context.support.XmlWebApplicationContext
 		else {
 			contextClassName = defaultStrategies.getProperty(WebApplicationContext.class.getName());
 			try {
@@ -394,10 +399,12 @@ public class ContextLoader {
 		// use in any post-processing or initialization that occurs below prior to #refresh
 		ConfigurableEnvironment env = wac.getEnvironment();
 		if (env instanceof ConfigurableWebEnvironment) {
+			//添加applicationContext的 environment的属性
 			((ConfigurableWebEnvironment) env).initPropertySources(sc, null);
 		}
 
 		customizeContext(sc, wac);
+		//重点调用ApplicationContext的refresh方法，进入spring 容器创建工作
 		wac.refresh();
 	}
 

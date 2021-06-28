@@ -493,13 +493,20 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * <p>May be overridden in subclasses in order to initialize further strategy objects.
 	 */
 	protected void initStrategies(ApplicationContext context) {
+		//获取图片上传的解析器
 		initMultipartResolver(context);
+		//获取国际化的视图解析器没有的话采用默认策略设置
 		initLocaleResolver(context);
+		//获取主题视图解析器，没有的话采用默认策略设置
 		initThemeResolver(context);
+		//获取HandlerMapping的视图解析器，没有的话采用默认策略设置
 		initHandlerMappings(context);
+		//获取HandlerAapter适配器，没有的话采用默认策略设置
 		initHandlerAdapters(context);
+		//获取HandlerAapter适配器异常处理器，没有的话采用默认策略设置
 		initHandlerExceptionResolvers(context);
 		initRequestToViewNameTranslator(context);
+		//获取视图解析器，没有的话采用默认策略设置
 		initViewResolvers(context);
 		initFlashMapManager(context);
 	}
@@ -511,6 +518,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 */
 	private void initMultipartResolver(ApplicationContext context) {
 		try {
+			//向上下文的BeanFactory中获取图片上传的视图解析器
 			this.multipartResolver = context.getBean(MULTIPART_RESOLVER_BEAN_NAME, MultipartResolver.class);
 			if (logger.isTraceEnabled()) {
 				logger.trace("Detected " + this.multipartResolver);
@@ -959,6 +967,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 
 		try {
+			//分发请求
 			doDispatch(request, response);
 		}
 		finally {
@@ -1033,6 +1042,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				multipartRequestParsed = (processedRequest != request);
 
 				// Determine handler for the current request.
+				//为本次请求分发给具体的Handler
 				mappedHandler = getHandler(processedRequest);
 				if (mappedHandler == null) {
 					noHandlerFound(processedRequest, response);
@@ -1040,6 +1050,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				// Determine handler adapter for the current request.
+				//为本次请求获取处理器适配器
 				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
 
 				// Process last-modified header, if supported by the handler.
@@ -1051,7 +1062,7 @@ public class DispatcherServlet extends FrameworkServlet {
 						return;
 					}
 				}
-
+                //拦截器的会在此处拦截，如果没有通过拦截器的话
 				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
 					return;
 				}
