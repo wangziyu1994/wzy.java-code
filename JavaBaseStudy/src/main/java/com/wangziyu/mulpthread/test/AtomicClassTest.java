@@ -80,7 +80,7 @@ public class AtomicClassTest {
         Thread.sleep(10000);
         System.out.println("普通方式自增"+num);
         System.out.println("volatile方式自增"+volatileNum);
-        System.out.println("atomic方式自增"+atomicNum);
+        System.out.println("atomic方式自增"+atomicNum.get());
 
     }
 

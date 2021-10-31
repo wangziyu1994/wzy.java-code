@@ -54,6 +54,7 @@ public class ReadWriteLockTest {
         Thread.sleep(1000);
         value = v;
         System.out.println(Thread.currentThread().getName()+"写完成");
+        lock.unlock();
     }
 
 

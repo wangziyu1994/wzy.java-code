@@ -13,8 +13,8 @@ public class CyclicBarrierTest {
 
     //第二种写法
     private CyclicBarrier secondCyclic = new CyclicBarrier(size, new Thread(() -> {
-        System.out.println("我是线程" + Thread.currentThread().getName() + "到達cyclic栅栏数量" + size);
-    }));
+        System.out.println("我是线程" + Thread.currentThread().getName() + "到达cyclic栅栏数量" + size);
+    },"monitor"));
 
     @Test
     public void test1() throws BrokenBarrierException, InterruptedException {
@@ -35,24 +35,25 @@ public class CyclicBarrierTest {
             t.start();
         }
 
-        System.out.println("主线程等待....");
+        System.out.println(Thread.currentThread().getName()+"主线程等待....");
 
     }
 
 
     @Test
     public void test2() throws BrokenBarrierException, InterruptedException {
-        for (int i = 0; i <= size + 50; i++) {
+        for (int i = 0; i <= 2*size - 1; i++) {
             Thread t = new Thread(() -> {
-                System.out.println("我是线程" + Thread.currentThread().getName() + "开始运行");
+                System.out.println("我是线程" + Thread.currentThread().getName() + "已到达栅栏");
                 try {
                     secondCyclic.await();
+                    System.out.println("我是线程" + Thread.currentThread().getName() + "已通过栅栏");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
                 }
-            });
+            },String.valueOf(i));
             t.start();
 
 

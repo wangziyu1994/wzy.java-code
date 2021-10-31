@@ -7,7 +7,9 @@ import java.util.Arrays;
 public class BubbleSort {
     public static void main(String[] args) {
         int arr[] = WzyUtils.generateRandomArray(10,100);
+        WzyUtils.printArr(arr);
         bubbleSort(arr);
+        WzyUtils.printArr(arr);
         WzyUtils.vailateArr(arr);
     }
 

@@ -72,7 +72,7 @@ public class TryCatchFinallyTest {
      * @param args
      */
     public static void main(String[] args) {
-        test4();
+        System.out.println(test4());
     }
 
 
@@ -85,16 +85,41 @@ public class TryCatchFinallyTest {
 
         try {
             System.out.println("dosomething");
-            return  returnMethod();
+            //return  returnMethod();
         }
         finally {
             System.out.println("finally语句块内容");
-            return 2;
         }
+        System.out.println("finall后面的内容");
+        return  3;
     }
 
     public static int returnMethod(){
         System.out.println("我是return后的内容");
         return 1;
+    }
+
+
+    @Test
+    public  void test5()  throws Exception {
+        boolean flag=false;
+        if(flag){
+            System.out.println("try块外面return");
+        }
+
+        try {
+            System.out.println("dosomething");
+            //return  returnMethod();
+            throw new Exception("try块的异常");
+        }
+        catch (Exception e){
+            System.out.println("catch语句块内容");
+            throw new Exception("catch块的异常");
+           //System.out.println("catch语句异常之后块内容");
+        }
+        finally {
+            System.out.println("finally语句块内容");
+        }
+        //System.out.println("finall后面的内容");
     }
     }

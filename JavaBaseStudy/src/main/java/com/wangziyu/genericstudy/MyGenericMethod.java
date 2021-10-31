@@ -69,6 +69,7 @@ public class MyGenericMethod <E> extends Parents{
     }
 
     public void test(){
+        unSureClassMethod(new MyGenericMethod<SonOfSon>());
         unSureClassMethodExtend(new MyGenericMethod<SonOfSon>());
         unSureClassMethodSuper(new MyGenericMethod<ParOfParent>());
     }

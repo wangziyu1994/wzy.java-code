@@ -17,4 +17,10 @@ public class SystemTest {
         System.out.println("==========================================================");
         System.out.println(properties.toString());
     }
+
+    @Test
+    public void test2(){
+        Map<String,String> envmap=System.getenv();
+        System.getProperty("wangziyu.name");
+    }
 }

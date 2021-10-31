@@ -34,8 +34,8 @@ public class QueueTest {
         //arrayBlockingQueueTest();
         //pritorQueueTest();
         //delayedQueueTest();
-        //synchronQueueTest();
-        //tranferQueueTest();
+       // synchronQueueTest();
+        tranferQueueTest();
     }
 
 

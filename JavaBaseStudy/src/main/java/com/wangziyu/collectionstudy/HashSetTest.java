@@ -2,11 +2,14 @@ package com.wangziyu.collectionstudy;
 
 //import org.junit.jupiter.api.Test;
 
+import org.junit.Test;
+
 import java.util.*;
 
 public class HashSetTest {
     public static void main(String[] args) {
-        Set<String> words = new HashSet<>();
+        HashSet<String> words = new HashSet<>();
+        words.add(null);
         long totalTime = 0;
         try (Scanner in = new Scanner(System.in)) {
             while (in.hasNext()) {
@@ -46,5 +49,21 @@ public class HashSetTest {
                 System.out.println(words.size() + "distinct words:" + totalTime + "millSeconds");
             }
         }
+    }
+
+
+    @Test
+    public void test2() {
+       Set<String> set=new TreeSet<>();
+       byte b=1;
+       long l=b;
+       String [] str={};
+       int a1=3;
+       int b1=4;
+       a1=a1+b1;
+       b1=a1-b1;
+       a1=a1-b1;
+       System.out.println(a1);
+       System.out.println(b1);
     }
 }

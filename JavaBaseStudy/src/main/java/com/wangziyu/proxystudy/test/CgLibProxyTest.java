@@ -17,7 +17,8 @@ public class CgLibProxyTest {
         Enhancer enhancer=new Enhancer();
         enhancer.setSuperclass(AInterface.class);
         enhancer.setCallback(interceptor);
-        Class enclass=enhancer.create().getClass();
+        AInterface proxy=(AInterface) enhancer.create();
+        proxy.function1("aaaaa");
 
     }
 
