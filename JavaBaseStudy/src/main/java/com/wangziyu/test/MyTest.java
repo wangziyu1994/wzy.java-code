@@ -174,55 +174,54 @@ public class MyTest {
     }
 
     public int[] intersect(int[] nums1, int[] nums2) {
-       Map<Integer,Integer> hashMap=new HashMap();
-       for(int i:nums1){
-           int count=hashMap.getOrDefault(i,0)+1;
-           hashMap.put(i,count);
-       }
-
-       List<Integer> list=new ArrayList<>();
-        for(int i:nums2){
-           if(hashMap.containsKey(i)){
-               list.add(i);
-           }
+        Map<Integer, Integer> hashMap = new HashMap();
+        for (int i : nums1) {
+            int count = hashMap.getOrDefault(i, 0) + 1;
+            hashMap.put(i, count);
         }
-       Integer[] integers=   new Integer[list.size()];
-       list.toArray(integers);
-        return Arrays.stream(integers).mapToInt((Integer i)->{
+
+        List<Integer> list = new ArrayList<>();
+        for (int i : nums2) {
+            if (hashMap.containsKey(i)) {
+                list.add(i);
+            }
+        }
+        Integer[] integers = new Integer[list.size()];
+        list.toArray(integers);
+        return Arrays.stream(integers).mapToInt((Integer i) -> {
             return i.intValue();
         }).toArray();
     }
 
     @Test
     public void testmaxProfit() {
-        int[] nums1 = {7,1,5,3,6,4};
+        int[] nums1 = {7, 1, 5, 3, 6, 4};
         int res = maxProfit(nums1);
         System.out.println(res);
     }
 
     public int maxProfit(int[] prices) {
-        int maxProfile=0;
-        int index=0;
-         for(int i=0;i<prices.length-1;i++){
-             for(int j=i+1;j<prices.length;j++){
-                 int newProfile=prices[j]-prices[i];
-                 if(newProfile>maxProfile){
-                     maxProfile=newProfile;
-                     index=i;
-                 }
-             }
-         }
-      System.out.println(maxProfile);
+        int maxProfile = 0;
+        int index = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            for (int j = i + 1; j < prices.length; j++) {
+                int newProfile = prices[j] - prices[i];
+                if (newProfile > maxProfile) {
+                    maxProfile = newProfile;
+                    index = i;
+                }
+            }
+        }
+        System.out.println(maxProfile);
         System.out.println(index);
-         return index+1;
+        return index + 1;
     }
 
 
-
     @Test
-    public  void test() throws ClassNotFoundException, SQLException {
-        Integer integer=10;
-        String s="saber";
+    public void test() throws ClassNotFoundException, SQLException {
+        Integer integer = 10;
+        String s = "saber";
         updateInteger(integer);
         updateString(s);
         System.out.println(integer);
@@ -233,12 +232,12 @@ public class MyTest {
     }
 
 
-    public void updateString(String param){
-        param="updatestr";
+    public void updateString(String param) {
+        param = "updatestr";
     }
 
-    public void updateInteger(Integer param){
-      param=9999;
+    public void updateInteger(Integer param) {
+        param = 9999;
     }
 
 
@@ -246,8 +245,8 @@ public class MyTest {
      * 测试 hashSet 元素 唯一性
      */
     @Test
-    public void testHashSet(){
-        HashSet<Long> ackSet=new HashSet<>();
+    public void testHashSet() {
+        HashSet<Long> ackSet = new HashSet<>();
         ackSet.add(1L);
         ackSet.add(1L);
         ackSet.add(1L);
@@ -257,35 +256,90 @@ public class MyTest {
     }
 
 
-
     @Test
-    public void test10(){
-      String a="c";
-      System.out.println("start");
-      switch (a){
-          case "a":
-              System.out.println(a);
-              break;
-          case "b":
-              System.out.println(a);
-              break;
-          default:
-              System.out.println("default");
-              break;
-      }
+    public void test10() {
+        String a = "c";
+        System.out.println("start");
+        switch (a) {
+            case "a":
+                System.out.println(a);
+                break;
+            case "b":
+                System.out.println(a);
+                break;
+            default:
+                System.out.println("default");
+                break;
+        }
     }
 
 
     @Test
     public void test11() throws Exception {
-      Map<String,String> map=new HashMap();
-      System.out.println(map.get(null));
-       boolean a=false;
-       if(a){
-           System.out.println("true");
-       }
-       Class.forName("");
-       DriverManager.getConnection("");
+        Map<String, String> map = new HashMap();
+        System.out.println(map.get(null));
+        boolean a = false;
+        if (a) {
+            System.out.println("true");
+        }
+        Class.forName("");
+        DriverManager.getConnection("");
+
+    }
+
+
+    @Test
+    public void test12() throws Exception {
+        TreeNode root = new TreeNode();
+        init(root, 1, true);
+        print(root, true);
+    }
+
+    public class TreeNode {
+        TreeNode left;
+        TreeNode right;
+        int val;
+
+
+    }
+
+
+    public void init(TreeNode treeNode, int val, boolean flag) {
+        treeNode.val = val;
+        TreeNode treeNodeTmp;
+        val++;
+        if(val>9){
+            return;
+        }
+        if (flag&&val!=2) {
+            TreeNode left = new TreeNode();
+            treeNode.left = left;
+            init(left, val, true);
+        } else if(flag&&val!=2) {
+            TreeNode right = new TreeNode();
+            treeNode.right = right;
+            init(right, val, false);
+        }else {
+            TreeNode left = new TreeNode();
+            treeNode.left = left;
+            init(left, val, true);
+
+            TreeNode right = new TreeNode();
+            treeNode.right = right;
+            init(right, val, false);
+        }
+
+    }
+
+
+    public void print(TreeNode treeNode, Boolean flag) {
+        System.out.println(treeNode.val);
+        if (flag) {
+            print(treeNode.left, false);
+        } else {
+            print(treeNode.right, true);
+        }
+
 
     }
 
