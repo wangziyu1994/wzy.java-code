@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:wzy="http://com.wangziyu.springstudy/wzynamespace"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	                       http://com.wangziyu.springstudy/wzynamespace wzy.xsd
+                           http://www.springframework.org/schema/context  spring-context.xsd
+                           http://www.springframework.org/schema/aop   spring-aop.xsd
+                           http://www.springframework.org/schema/tx   spring-tx.xsd "
+>
+	<context:property-placeholder location="classpath:wzyjdbc.properties"/>
+	<bean id="wzydataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+	</bean>
+
+	<bean id="JdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg name="dataSource" ref="wzydataSource"></constructor-arg>
+	</bean>
+
+	<bean id="wzytarget" class="com.springsource.transactionstudy.WzyTarget">
+		<property name="wzyTarget2" ref="wzytarget2"></property>
+		<property name="jdbcTemplate" ref="JdbcTemplate"></property>
+	</bean>
+	<bean id="wzytarget2" class="com.springsource.transactionstudy.WzyTarget2">
+		<property name="jdbcTemplate" ref="JdbcTemplate"></property>
+	</bean>
+
+	<bean id="wzyLogAop" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="wzydataSource"></property>
+	</bean>
+
+	<bean id="wzyTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="wzydataSource"/>
+	</bean>
+
+	<aop:config>
+		<aop:pointcut id="wzyPointCut"
+					  expression="execution(* com.springsource.transactionstudy.WzyTarget*.wzytargetMethod*(..))"/>
+		<aop:advisor advice-ref="wzyTransaction" pointcut-ref="wzyPointCut"></aop:advisor>
+	</aop:config>
+
+
+	<tx:advice id="wzyTransaction" transaction-manager="wzyTxManager">
+		<tx:attributes>
+			<tx:method name="wzytargetMethod1" propagation="MANDATORY"/>
+			<tx:method name="wzytargetMethod2" propagation="REQUIRED"/>
+			<tx:method name="wzytargetMethod3" propagation="NESTED"/>
+		</tx:attributes>
+	</tx:advice>
+
+
+</beans>
+

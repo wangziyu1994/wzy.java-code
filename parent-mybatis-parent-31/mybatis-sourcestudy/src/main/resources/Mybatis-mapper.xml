@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangziyu.mybatis.mapper.WzyMapper">
+    <select id="doPersonQry" resultMap="personResultMap" >
+        select  p_id,p_name from person where p_id=#{id}
+    </select>
+
+    <resultMap id="personResultMap" type="com.wangziyu.mybatis.model.Person">
+        <result property="id" column="p_id"></result>
+        <result property="name" column="p_name"></result>
+    </resultMap>
+
+
+    <update id="doInsertPerson" >
+        insert into person  (p_id,p_name) values(${id},${name})
+    </update>
+
+
+    <insert id="doUpdatePerson" >
+      update person set p_name=#{name} where p_id=#{id}
+    </insert>
+
+    <!--<parameterMap id="personParamMap" type="com.wangziyu.mybatis.model.Person">
+        <parameter property="id" javaType="java.lang.Integer" ></parameter>
+        <parameter property="name" javaType="java.lang.String"></parameter>
+    </parameterMap>-->
+
+
+</mapper>

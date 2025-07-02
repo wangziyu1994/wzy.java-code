@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:wzy="http://com.wangziyu.springstudy/wzynamespace"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	                       http://com.wangziyu.springstudy/wzynamespace wzy.xsd"
+>
+	<bean id="wzyInstantiationBeanPostProcessor" class="com.springsource.beanpostprocessor.WzyInstantiationBeanPostProcessor" >
+	</bean>
+
+	<bean id="personPost" class="com.springsource.beanpostprocessor.Person" >
+	</bean>
+
+</beans>
+

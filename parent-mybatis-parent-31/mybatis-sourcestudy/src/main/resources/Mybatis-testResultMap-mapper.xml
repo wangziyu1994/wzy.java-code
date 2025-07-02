@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangziyu.mybatis.resultmap.WzyMapper">
+  <!--  <select id="doPersonQry1" resultMap="personResultMap1" >
+       select  p_id,p_name,p_age,h_id,h_name from person p inner join hobbit h on h.h_id=p.p_id where p.p_id=#{xxxxx}
+    </select>-->
+
+  <select id="doPersonQry2" resultMap="personResultMap2" >
+        select  p_id,p_name,p_age  from person p where p.p_id=#{xxxxx}
+    </select>
+
+
+
+   <!-- <resultMap id="personResultMap1" type="com.wangziyu.mybatis.resultmap.Person" >
+        <result property="id" column="p_id" ></result>
+        <result property="name" column="p_name"></result>
+        <result property="age" column="p_age"  ></result>
+        <association property="hobbit" javaType="com.wangziyu.mybatis.resultmap.Hobbit">
+            <result property="id" column="h_id" ></result>
+            <result property="name" column="h_name"></result>
+        </association>
+    </resultMap>-->
+
+
+ <resultMap id="personResultMap2"  type="com.wangziyu.mybatis.resultmap.Person" >
+        <result property="id" column="p_id" ></result>
+        <result property="name" column="p_name"></result>
+        <result property="age" column="p_age"  ></result>
+        <association property="hobbit"  column="h_id" select="doHobbitQry" javaType="com.wangziyu.mybatis.resultmap.Hobbit" >
+        </association>
+    </resultMap>
+
+    <select id="doHobbitQry" resultType="com.wangziyu.mybatis.resultmap.Hobbit" >
+        select h_id,h_name from hobbit h where h.h_id=1
+    </select>
+
+
+
+
+
+
+
+</mapper>
